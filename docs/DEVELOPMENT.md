@@ -116,6 +116,12 @@ If a path is wrong, the build stops and names the file it couldn't find.
 3. Test in a local world. Single player runs a local server, so `EveryoneMustHaveMod` is satisfied.
 4. Log out and back in to check that anything you placed or changed persists.
 
+**Debug builds or a local zip import, not both.** Gale's **Import local mod** installs a zip to
+`BepInEx\plugins\<ModName>\`, without the team prefix, while a Debug build deploys to
+`BepInEx\plugins\<Team>-<ModName>\`. With both in one profile, BepInEx finds two copies of the plugin and loads
+only one, so you may be testing an older build without noticing. To test a Release zip, import it into the
+profile and stop running Debug builds there. To go back to Debug builds, remove the imported copy in Gale first.
+
 ## 6. Release
 
 1. Bump `<Version>`. That's the only place it lives: the plugin attribute and `manifest.json`
@@ -173,7 +179,7 @@ server profile in Gale like any other mod.
 | `CS0246: 'Piece' could not be found` | `assembly_valheim` isn't resolving. Check `ValheimDir`. |
 | `PluginInfo` doesn't exist | It's generated during the build. Build once. |
 | Release: `Couldn't find a BepInExPack version` | The pack's changelog format changed. Set `BepInExPackDependency` in `Local.props`. |
-| BepInEx warns about a duplicate plugin GUID | There's an old dev folder alongside the current one, e.g. one from before `ThunderstoreTeam` was set. Delete the stale folder. |
+| BepInEx warns about a duplicate plugin GUID | There's an old dev folder alongside the current one, e.g. one from before `ThunderstoreTeam` was set, or a Gale local import (`<ModName>`) next to a Debug deploy (`<Team>-<ModName>`). Delete the stale folder. |
 | Plugin missing from the log | The DLL isn't in that profile's `BepInEx\plugins`, or you launched a different profile. |
 | Kicked on connect with a version mismatch | Server and client have different plugin versions. `VersionStrictness.Minor` means `x.y` must match. |
 | Need a private game field | Add `BepInEx.AssemblyPublicizer.MSBuild` and set `Publicize="true"` on the `assembly_valheim` reference. |

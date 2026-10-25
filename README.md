@@ -36,8 +36,10 @@ A BepInEx/Jotunn mod. Each piece lives in its own class under `Pieces/`. The Thu
 `Package/README.md`; keep its player-facing text in step with the sections above. Build and release steps are in
 `docs/DEVELOPMENT.md`.
 
+### How the pieces work
+
 <details>
-<summary><b>How the chimney flue works</b> (<code>Quan_chimney_flue</code>)</summary>
+<summary><b>Quan's Chimney Flue</b> (<code>Quan_chimney_flue</code>)</summary>
 
 A clone of the vanilla iron cage floor (`iron_floor_2x2`), with its bars replaced by a generated stone frame and
 angled louvres (`Meshes/BoxMesh.cs`, no colliders), that blocks rain from a fire without stopping its smoke.

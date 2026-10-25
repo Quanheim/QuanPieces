@@ -10,6 +10,8 @@ Everyone on a server needs the mod installed: the server and every player connec
 <details>
 <summary><b>Quan's Chimney Flue</b></summary>
 
+<img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chimney-flue.jpg" alt="Quan's Chimney Flue seen from below, its stone louvres above a lit campfire inside a wooden chimney" width="480">
+
 A 2x2 chimney flue that sits above your fireplace, inside your chimney, and stops the rain putting out your
 fire whilst still letting the smoke escape. No longer do you need a roof over your chimneys!
 

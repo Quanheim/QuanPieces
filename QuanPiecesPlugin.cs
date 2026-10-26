@@ -35,7 +35,22 @@ namespace QuanPieces
             // Only ever register once per session.
             PrefabManager.OnVanillaPrefabsAvailable -= AddPieces;
 
-            ChimneyFlue.Register();
+            // Each piece registers on its own, so one failing (e.g. after a game update) can't stop the others.
+            Register("chimney flue", ChimneyFlue.Register);
+            Register("brazier street light", BrazierStreetlight.Register);
+            Register("lantern street light", LanternStreetlight.Register);
+        }
+
+        private static void Register(string piece, System.Action register)
+        {
+            try
+            {
+                register();
+            }
+            catch (System.Exception e)
+            {
+                Log.LogError($"Couldn't add the {piece}: {e}");
+            }
         }
     }
 }

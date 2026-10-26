@@ -30,6 +30,42 @@ fire whilst still letting the smoke escape. No longer do you need a roof over yo
 
 </details>
 
+<details>
+<summary><b>Quan's Street Lights</b></summary>
+
+<table>
+<tr>
+<td><img src="docs/images/streetlight-brazier.jpg" alt="Quan's Brazier Street Light: a coal brazier hung from a wooden post and arm" width="320"></td>
+<td><img src="docs/images/streetlight-lantern.jpg" alt="Quan's Dvergr Street Light: a Dvergr lantern hung from a Grausten and Ashwood post with a carved arch" width="320"></td>
+</tr>
+<tr>
+<td><img src="docs/images/streetlight-brazier-card.png" alt="Build-menu card: 5 Bronze, 2 Coal, 1 Chain and 4 Wood at a Forge" width="320"></td>
+<td><img src="docs/images/streetlight-lantern-card.png" alt="Build-menu card: 3 Copper, 1 Dvergr Lantern, 1 Chain, 6 Grausten and 4 Ashwood at a Black Forge" width="320"></td>
+</tr>
+</table>
+
+Two street lights for lighting paths, roads and the spaces between buildings: a coal brazier for the middle of
+the game and a Dvergr lantern for later on. Both work like any other fire, so you refuel them by hand, and with
+[NoSmokeStayLit](https://thunderstore.io/c/valheim/p/TastyChickenLegs/NoSmokeStayLit/) you can put them on its
+day/night timer or keep them lit.
+
+| | Brazier Street Light | Dvergr Street Light |
+|---|---|---|
+| **Cost** | 5 Bronze, 2 Coal, 1 Chain, 4 Wood | 3 Copper, 1 Dvergr Lantern, 1 Chain, 6 Grausten, 4 Ashwood |
+| **Crafting station** | Forge | Black Forge |
+| **Fuel** | Coal | Wisps |
+| **Rain** | Stays lit, sheltered by its arm | Stays lit |
+| **Strong wind** | Burns low, like any open fire | Stays lit, it's enclosed |
+| **Light** | A little brighter and wider than a hanging brazier | A wide pool: lamps about 30 m apart light the whole path |
+| **Warmth** | Up to 8 m away, like a hanging brazier | Up to 50 m away, so whole paths stay warm |
+
+- Both stand on the ground or on floors, and need the same support as a wooden post.
+- They're 4 m tall, with the light hanging 2.5 to 3 m up.
+- To use them with NoSmokeStayLit's timer, add `Quan_streetlight_brazier` and `Quan_streetlight_lantern` to its
+  **Custom Items on Timers** setting.
+
+</details>
+
 ## For developers
 
 A BepInEx/Jotunn mod. Each piece lives in its own class under `Pieces/`. The Thunderstore page is
@@ -61,5 +97,44 @@ It relies only on vanilla behaviour, no patches:
   the opaque regions of the stone floor's texture atlas, because the rest of the atlas is partly transparent.
 - `Fireplace` treats anything, triggers included, within about 0.5 m above its cover check point as a
   blockage, hence the 1.5 m placement rule.
+
+</details>
+
+<details>
+<summary><b>Quan's Street Lights</b> (<code>Quan_streetlight_brazier</code>, <code>Quan_streetlight_lantern</code>)</summary>
+
+Both clone the vanilla hanging brazier (`piece_brazierceiling01`) for a working `Fireplace`: fuel, the add-fuel
+interaction and the on/off switching of light and warmth. That component is what NoSmokeStayLit patches, so its
+timer and keep-lit lists work on these by prefab name. (Odin Architect's lanterns have no `Fireplace`, which is
+why they ignore its timer.) The piece origin moves to the foot of the post, so `m_disableCoverCheck` is on: the
+blocked check would otherwise hit the post itself.
+
+**Brazier street light** (`Pieces/BrazierStreetlight.cs`):
+
+- The frame is the vanilla pole and beam meshes, placed and scaled: two stacked 2 m poles, a 2 m arm, a 45°
+  brace at 75% thickness, and four foot poles 75% inside the post.
+- The brazier hangs from the arm. Its mesh is copied with the top nine links of its vertical chain removed
+  (islands on the centre line above a cut height), so its chain meets the arm.
+- The arm's collider is added by the mod and untagged, so it counts as a roof: rain doesn't dim it, but strong
+  wind still does (vanilla rule). Vanilla beams are tagged `leaky` and don't shelter.
+- Light range 12 m (the brazier's own is 10 m).
+
+**Dvergr street light** (`Pieces/LanternStreetlight.cs`):
+
+- All brazier visuals are stripped. With no high/low flame objects the `Fireplace` never runs its wet check, so
+  it's weatherproof. Fuel is Wisp, at the brazier's burn rate.
+- The Grausten frame is built from the Grausten Small Pillar, repeated with every other repeat mirrored (no
+  joints), mitred at the corner, and welded both ways onto the Tapered Pillar, matching faces by direction so
+  the carved star keeps its shading. All the Grausten uses a triplanar copy of its material, so the texture is
+  continuous across every piece. The Tapered Pillar's inner notch faces are split off (whole flat faces, not
+  triangles) and textured as Ashwood.
+- The Ashwood cores are the Ashwood pole stretched to 4 m and 2.2 m.
+- The Ashwood Arch is shipped unreadable, so it's used whole, scaled 90% along the beam and post and 75% front to
+  back, with its own post and beam hidden inside the cores.
+- The lantern and chain are islands lifted from the Dvergr Pole Lantern's mesh. `LanternGlass` swaps its
+  material for a copy with emission off while the `Fireplace` is out.
+- The light is the Dvergr lantern's, at range 60 m and intensity 1.5, with its `LightLod` switch-off distance
+  raised to 80 m. Warmth is the hanging brazier's area at 50 m.
+- `Meshes/MeshData.cs` holds the reusable mesh operations (islands, resize, clip, slice, flat faces).
 
 </details>

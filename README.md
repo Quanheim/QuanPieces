@@ -103,11 +103,13 @@ It relies only on vanilla behaviour, no patches:
 <details>
 <summary><b>Quan's Street Lights</b> (<code>Quan_streetlight_brazier</code>, <code>Quan_streetlight_lantern</code>)</summary>
 
-Both clone the vanilla hanging brazier (`piece_brazierceiling01`) for a working `Fireplace`: fuel, the add-fuel
-interaction and the on/off switching of light and warmth. That component is what NoSmokeStayLit patches, so its
-timer and keep-lit lists work on these by prefab name. (Odin Architect's lanterns have no `Fireplace`, which is
-why they ignore its timer.) The piece origin moves to the foot of the post, so `m_disableCoverCheck` is on: the
-blocked check would otherwise hit the post itself.
+Both clone the vanilla hanging brazier (`piece_brazierceiling01`), so they're built on the game's own `Fireplace`
+component, the same one every vanilla fire and torch uses: fuel, the add-fuel interaction, and the on/off
+switching of light, warmth and effects. Many modded light sources are just a light with no `Fireplace`, so they
+sit outside the game's fire behaviour. These street lights behave like vanilla light sources, so any mod that
+works with vanilla fires and torches (fuel, lit state, timers and so on) can work with them too. The piece origin
+moves to the foot of the post, so `m_disableCoverCheck` is on: the blocked check would otherwise hit the post
+itself.
 
 **Brazier street light** (`Pieces/BrazierStreetlight.cs`):
 

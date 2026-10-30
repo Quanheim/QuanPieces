@@ -65,3 +65,75 @@ day/night timer or keep them lit.
   **Custom Items on Timers** setting.
 
 </details>
+
+<details>
+<summary><b>Quan's Planters</b></summary>
+
+<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/planter-greenhouse.jpg" alt="A Large Planter full of crops under a roofed walkway, tucked in front of a half wall" width="480"></p>
+
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/planter-small.jpg" alt="Quan's Planter: a 1x2 raised bed of cultivated soil in a mitred wooden frame" width="320"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/planter-large-bloom.jpg" alt="Quan's Large Planter packed full and fully grown: flowering onions, carrots, turnips, Jotun Puffs and Magecaps side by side" width="320"></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/planter-small-card.png" alt="Build-menu card: 10 Wood at a Workbench" width="320"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/planter-large-card.png" alt="Build-menu card: 16 Wood at a Workbench" width="320"></td>
+</tr>
+</table>
+
+Raised beds of cultivated soil for growing crops wherever you build: in a greenhouse, along a terrace, or tucked
+under the eaves in front of a half wall. Plant straight into them with the cultivator, no hoe needed.
+
+| | Planter | Large Planter |
+|---|---|---|
+| **Size** | 1x2 | 1x4 |
+| **Cost** | 10 Wood | 16 Wood |
+| **Crafting station** | Workbench | Workbench |
+
+- Anything you can plant with the cultivator grows in them, in any biome, with no heat or cold damage.
+- They work under a roof, so you can farm indoors.
+- Pack your crops in as tightly as you like: plants in a planter don't crowd each other, and nearby walls and
+  other building pieces don't crowd them either.
+- They're 80 cm tall, low enough to sit under a 1 m half wall. They snap to the floor grid and to each other, and
+  need the same support as a wooden floor.
+- Removing a planter gives back the seeds of anything still growing in it. Fully grown crops drop to the ground,
+  ready to pick.
+
+</details>
+
+<details>
+<summary><b>Quan's Chicken Coop</b></summary>
+
+<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-built.jpg" alt="A finished chicken coop: wooden bar walls and a gate on a raised, thatched floor under a thatch roof" width="480"></p>
+
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop.jpg" alt="Hen Solo and Cluckbacca safe inside their coop" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-door-wall.jpg" alt="The Chicken Coop Wall and the Chicken Coop Door, wooden bars with an iron latch on the gate" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-egg.jpg" alt="Picking up a warm egg through the coop wall's bars" width="240"></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-floor-card.png" alt="Build-menu card: Quan's Chicken Coop Floor, 2 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-wall-card.png" alt="Build-menu card: Quan's Chicken Coop Wall, 2 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chicken-coop-door-card.png" alt="Build-menu card: Quan's Chicken Coop Door, 2 Wood at a Workbench" width="240"></td>
+</tr>
+</table>
+
+Three pieces for giving your chickens a proper home: a warm thatched floor, walls of wooden bars and a gate to
+match.
+
+| | Coop Floor | Coop Wall | Coop Door |
+|---|---|---|---|
+| **Size** | 2x2 | 2x2 | 2x2 |
+| **Cost** | 2 Wood | 2 Wood | 2 Wood |
+| **Crafting station** | Workbench | Workbench | Workbench |
+
+- **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. It gives off warmth like
+  a fire, so eggs laid on it hatch. As in vanilla, they also need a roof over them. Standing on it warms you too.
+- **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
+  them, so you can pick up eggs from outside the coop.
+- **Door**: a 2x2 gate of wooden bars with an iron latch. It opens and closes like any door.
+- They snap like vanilla 2x2 floors and walls, and need the same support as other wooden pieces.
+
+</details>

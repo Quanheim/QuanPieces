@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.0 - 2026-10-30
+
+- Added Quan's Planters, raised beds of cultivated soil in a wooden frame, in the QuanPieces tab:
+  - **Planter**: 1x2, costs 10 Wood at a Workbench.
+  - **Large Planter**: 1x4, costs 16 Wood at a Workbench.
+- Anything you can plant with the cultivator grows in them, in any biome, under a roof, with no heat or cold
+  damage, packed in as tightly as you like. Removing a planter gives back the seeds of anything still growing.
+- Added Quan's Chicken Coop, three 2x2 pieces in the QuanPieces tab, each costing 2 Wood at a Workbench:
+  - **Chicken Coop Floor**: a wooden floor with low thatch, so chicks stand tall. It gives off warmth, so eggs
+    laid on it hatch.
+  - **Chicken Coop Wall**: wooden bars you can see and reach through to pick up eggs, but animals can't pass.
+  - **Chicken Coop Door**: a 2x2 gate of wooden bars with an iron latch.
+
 ## 1.1.0 - 2026-10-26
 
 - Added Quan's Street Lights, both in the QuanPieces tab and compatible with NoSmokeStayLit's timer:

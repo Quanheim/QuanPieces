@@ -1,5 +1,6 @@
 using BepInEx;
 using BepInEx.Logging;
+using HarmonyLib;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using QuanPieces.Pieces;
@@ -27,7 +28,32 @@ namespace QuanPieces
         private void Awake()
         {
             Log = Logger;
+            ApplyPatches();
             PrefabManager.OnVanillaPrefabsAvailable += AddPieces;
+        }
+
+        /// <summary>
+        /// Applies each Harmony patch class on its own, so one that no longer fits the game (after an update)
+        /// is logged and skipped instead of stopping the others and the pieces.
+        /// </summary>
+        private static void ApplyPatches()
+        {
+            var harmony = new Harmony(PluginGuid);
+            foreach (var type in typeof(QuanPiecesPlugin).Assembly.GetTypes())
+            {
+                if (!type.IsDefined(typeof(HarmonyPatch), false))
+                {
+                    continue;
+                }
+                try
+                {
+                    harmony.CreateClassProcessor(type).Patch();
+                }
+                catch (System.Exception e)
+                {
+                    Log.LogError($"Couldn't apply {type.Name}: {e}");
+                }
+            }
         }
 
         private void AddPieces()
@@ -39,6 +65,11 @@ namespace QuanPieces
             Register("chimney flue", ChimneyFlue.Register);
             Register("brazier street light", BrazierStreetlight.Register);
             Register("lantern street light", LanternStreetlight.Register);
+            Register("large planter", Planter.RegisterLarge);
+            Register("planter", Planter.RegisterSmall);
+            Register("chicken coop floor", ChickenCoopFloor.Register);
+            Register("chicken coop door", ChickenCoopDoor.Register);
+            Register("chicken coop wall", ChickenCoopWall.Register);
         }
 
         private static void Register(string piece, System.Action register)

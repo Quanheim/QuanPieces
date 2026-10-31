@@ -97,8 +97,8 @@ under the eaves in front of a half wall. Plant straight into them with the culti
   other building pieces don't crowd them either.
 - They're 80 cm tall, low enough to sit under a 1 m half wall. They snap to the floor grid and to each other, and
   need the same support as a wooden floor.
-- Removing a planter gives back the seeds of anything still growing in it. Fully grown crops drop to the ground,
-  ready to pick.
+- Removing a planter clears it: seedlings give back their seeds, and anything ready to pick drops its harvest.
+  Other mods' plants (such as PlantEverything's) give back whatever that mod gives when you remove them.
 
 </details>
 

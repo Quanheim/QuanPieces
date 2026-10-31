@@ -97,8 +97,8 @@ under the eaves in front of a half wall. Plant straight into them with the culti
   other building pieces don't crowd them either.
 - They're 80 cm tall, low enough to sit under a 1 m half wall. They snap to the floor grid and to each other, and
   need the same support as a wooden floor.
-- Removing a planter gives back the seeds of anything still growing in it. Fully grown crops drop to the ground,
-  ready to pick.
+- Removing a planter clears it: seedlings give back their seeds, and anything ready to pick drops its harvest.
+  Other mods' plants (such as PlantEverything's) give back whatever that mod gives when you remove them.
 
 </details>
 
@@ -234,18 +234,21 @@ a planter's soil collider (`Quan_planter_soil`, checked by `PlanterSoil.IsOverSo
 terrain whether ground is cultivated, so:
 
 - `Heightmap.IsCultivated` returns true on planter soil.
-- `Player.PieceRayTest`: when a plant is being placed and the aim hits the soil, the hit is reported as terrain,
-  so the vanilla placement checks (and then `IsCultivated`) accept it.
+- `Player.PieceRayTest`: when a seedling, or anything else from the cultivator apart from its terrain tools (such
+  as PlantEverything's pickable mushrooms and bushes), is being placed and the aim hits the soil, the hit is
+  reported as terrain, so the vanilla placement checks (and then `IsCultivated`) accept it.
 - `Player.UpdatePlacementGhost`: wrong biome and deep snow don't block planting in a planter.
 - `Plant.UpdateHealth`: biome, heat and cold are ignored. `Plant.HaveRoof` reports no roof.
 - `Plant.HaveGrowSpace`: always has room, apart from vines needing room from other vines. Grown crops must not
   count as obstacles: the game destroys a crop that's unhealthy when it's due to grow.
 - `StaticPhysics.Fall`: grown crops on the soil stay put instead of dropping to the terrain.
+- `WearNTear.Highlight`: the build-mode support tint is skipped on a planter while planting into its soil.
 
 Each patch class is applied on its own (`QuanPiecesPlugin.ApplyPatches`), so one that stops fitting the game is
 logged and skipped without affecting the rest. When a planter is destroyed, `PlanterSoil` (via
-`WearNTear.m_onDestroyed`) removes its seedlings and drops their seeds itself: `Piece.DropResources` won't,
-because saplings' costs aren't marked recoverable.
+`WearNTear.m_onDestroyed`) clears the soil itself. Seedlings drop their seeds directly (`Piece.DropResources`
+won't, because saplings' costs aren't marked recoverable). Pickables go as if removed by hand: `Piece.DropResources`,
+so the owning mod's refund rules apply, plus the harvest if ripe.
 
 </details>
 

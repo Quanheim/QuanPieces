@@ -30,7 +30,7 @@ namespace QuanPieces.Pieces
         private static readonly Vector3 SoilProbe = new Vector3(0.05f, 0.12f, 0.05f);
 
         private static readonly Collider[] Hits = new Collider[32];
-        private static readonly Collider[] Found = new Collider[64];
+        private static readonly Collider[] Found = new Collider[256];
         private static int _pieceMask;
         private static int _active;
         private static Material _soilMaterial;
@@ -53,7 +53,7 @@ namespace QuanPieces.Pieces
             var wearNTear = GetComponent<WearNTear>();
             if (wearNTear != null)
             {
-                wearNTear.m_onDestroyed += RemoveSeedlings;
+                wearNTear.m_onDestroyed += ClearSoil;
             }
 
             ApplySoilTexture();
@@ -100,10 +100,14 @@ namespace QuanPieces.Pieces
         }
 
         /// <summary>
-        /// When the planter is destroyed or removed, its seedlings would be left floating. Remove them and drop
-        /// their seeds. Grown crops are left: with no soil under them they fall to the ground like any other.
+        /// When the planter is destroyed or removed, whatever is growing in it would be left floating. Each thing is
+        /// removed and leaves something behind:
+        /// - a seedling drops the seeds it was planted with;
+        /// - anything pickable (a grown crop, or a mod's mushroom or berry bush) is treated as if removed by hand: the
+        ///   game's normal refund, which gives back only what the piece itself marks as recoverable (so a mod such as
+        ///   PlantEverything keeps its own rules), plus its harvest if it's ripe.
         /// </summary>
-        private void RemoveSeedlings()
+        private void ClearSoil()
         {
             if (_soil == null)
             {
@@ -113,59 +117,112 @@ namespace QuanPieces.Pieces
             var bounds = _soil.bounds;
             bounds.Expand(new Vector3(0f, 0.6f, 0f));
             var count = Physics.OverlapBoxNonAlloc(bounds.center, bounds.extents, Found, Quaternion.identity, ~0, QueryTriggerInteraction.Collide);
-            var plants = new HashSet<Plant>();
+            var growing = new HashSet<GameObject>();
             for (var i = 0; i < count; i++)
             {
-                var plant = Found[i] != null ? Found[i].GetComponentInParent<Plant>() : null;
+                var collider = Found[i];
+                if (collider == null || collider.transform.IsChildOf(transform))
+                {
+                    continue;
+                }
+                var plant = collider.GetComponentInParent<Plant>();
+                var pickable = plant == null ? collider.GetComponentInParent<Pickable>() : null;
                 if (plant != null)
                 {
-                    plants.Add(plant);
+                    growing.Add(plant.gameObject);
+                }
+                else if (pickable != null)
+                {
+                    growing.Add(pickable.gameObject);
                 }
             }
 
-            foreach (var plant in plants)
+            foreach (var thing in growing)
             {
-                var nview = plant.GetComponent<ZNetView>();
+                var nview = thing.GetComponent<ZNetView>();
                 if (nview == null || !nview.IsValid())
                 {
                     continue;
                 }
-                DropSeeds(plant);
+
                 nview.ClaimOwnership();
-                ZNetScene.instance.Destroy(plant.gameObject);
+                var pickable = thing.GetComponent<Pickable>();
+                if (pickable == null)
+                {
+                    // A seedling: vanilla never lets you remove one, so its seeds aren't marked recoverable.
+                    DropCost(thing);
+                }
+                else
+                {
+                    // As if removed by hand: the game's own refund (only what the piece marks as recoverable, so
+                    // PlantEverything's rules apply), then the harvest if it's ripe.
+                    var piece = thing.GetComponent<Piece>();
+                    if (piece != null)
+                    {
+                        piece.DropResources(null);
+                    }
+                    if (!pickable.GetPicked())
+                    {
+                        DropHarvest(pickable);
+                    }
+                }
+                ZNetScene.instance.Destroy(thing);
+            }
+        }
+
+        /// <summary>What picking it gives, as vanilla works it out (without a skill bonus).</summary>
+        private static void DropHarvest(Pickable pickable)
+        {
+            var position = pickable.transform.position + Vector3.up * 0.3f;
+            if (pickable.m_itemPrefab != null)
+            {
+                var amount = pickable.m_dontScale || Game.instance == null
+                    ? pickable.m_amount
+                    : Mathf.Max(pickable.m_minAmountScaled, Game.instance.ScaleDrops(pickable.m_itemPrefab, pickable.m_amount));
+                Drop(pickable.m_itemPrefab, amount, position);
+            }
+            if (pickable.m_extraDrops != null && !pickable.m_extraDrops.IsEmpty())
+            {
+                foreach (var item in pickable.m_extraDrops.GetDropListItems())
+                {
+                    Drop(item.m_dropPrefab, item.m_stack, position);
+                }
             }
         }
 
         /// <summary>
-        /// Drops what the seedling was planted with. Piece.DropResources won't: saplings' costs aren't marked
-        /// recoverable, because vanilla never lets you remove one.
+        /// Drops what it was planted with. Piece.DropResources won't: saplings' costs aren't marked recoverable,
+        /// because vanilla never lets you remove one.
         /// </summary>
-        private static void DropSeeds(Plant plant)
+        private static void DropCost(GameObject thing)
         {
-            var piece = plant.GetComponent<Piece>();
+            var piece = thing.GetComponent<Piece>();
             if (piece == null || piece.m_resources == null || ObjectDB.instance == null)
             {
                 return;
             }
 
-            var position = plant.transform.position + Vector3.up * 0.3f;
+            var position = thing.transform.position + Vector3.up * 0.3f;
             foreach (var requirement in piece.m_resources)
             {
-                if (requirement == null || requirement.m_resItem == null || requirement.m_amount <= 0)
+                if (requirement != null && requirement.m_resItem != null && requirement.m_amount > 0)
                 {
-                    continue;
+                    Drop(ObjectDB.instance.GetItemPrefab(requirement.m_resItem.name), requirement.m_amount, position);
                 }
-                var itemPrefab = ObjectDB.instance.GetItemPrefab(requirement.m_resItem.name);
-                if (itemPrefab == null)
-                {
-                    continue;
-                }
-                var drop = Instantiate(itemPrefab, position, Quaternion.identity).GetComponent<ItemDrop>();
-                if (drop != null)
-                {
-                    drop.SetStack(requirement.m_amount);
-                    ItemDrop.OnCreateNew(drop);
-                }
+            }
+        }
+
+        private static void Drop(GameObject itemPrefab, int amount, Vector3 position)
+        {
+            if (itemPrefab == null || amount <= 0)
+            {
+                return;
+            }
+            var drop = Instantiate(itemPrefab, position, Quaternion.identity).GetComponent<ItemDrop>();
+            if (drop != null)
+            {
+                drop.SetStack(amount);
+                ItemDrop.OnCreateNew(drop);
             }
         }
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.1 - 2026-10-31
+
+- Planters now accept everything you plant with the cultivator, not only crop and tree seedlings: for example
+  PlantEverything's mushrooms, berry bushes and flowers, which previously couldn't be placed in them.
+- Aiming the cultivator at a planter's soil no longer tints the whole planter blue; aiming at the rim still does.
+- Removing a planter now clears everything in it, not just seedlings: anything ready to pick drops its harvest,
+  and PlantEverything's mushrooms and bushes give back what PlantEverything gives when you remove them by hand.
+  Previously they were left floating in the air. Fully grown crops now drop their harvest too, rather than
+  falling to the ground unpicked.
+
 ## 1.2.0 - 2026-10-30
 
 - Added Quan's Planters, raised beds of cultivated soil in a wooden frame, in the QuanPieces tab:

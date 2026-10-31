@@ -20,7 +20,9 @@ namespace QuanPieces.Pieces
     /// - Smoke puffs are rigidbodies about 0.84 m across that collide with pieces, but never with triggers,
     ///   so a trigger covering the tile lets smoke straight through.
     /// - Fireplace counts anything (triggers included) within about 0.5 m above its cover check point
-    ///   as a blockage, so the flue has to sit roughly 1.5 m or more above the fire.
+    ///   as a blockage, so the flue has to sit roughly 2 m or more above the fire.
+    /// - It can still be walked on: a solid slab on the "blocker" layer, which smoke ignores (Valheim's layer
+    ///   collision matrix) but characters stand on.
     ///
     /// WearNTear ignores triggers when working out support, so thin solid strips along the edges give it
     /// something to rest on walls and neighbouring tiles with, and give the hammer something to hit,
@@ -32,6 +34,8 @@ namespace QuanPieces.Pieces
         private const string BasePrefab = "iron_floor_2x2";      // vanilla iron cage floor
         private const string StoneSource = "stone_floor_2x2";    // its texture goes on the bars, its sounds on the piece
         private const string PieceShader = "Custom/Piece";       // snow overlays use a different shader and keep theirs
+
+        private const string WalkLayer = "blocker";    // stops characters and items, not smoke
 
         private const float HalfTile = 1f;
         private const float StripWidth = 0.1f;
@@ -72,7 +76,7 @@ namespace QuanPieces.Pieces
             var config = new PieceConfig
             {
                 Name = "Quan's Chimney Flue",
-                Description = "Blocks rain but not smoke. Must be 1.5m or more above a fireplace. For Valyyn.",
+                Description = "Blocks rain but not smoke. Must be 2m or more above a fireplace. For Valyyn.",
                 PieceTable = PieceTables.Hammer,
                 Category = QuanPiecesPlugin.HammerCategory,
                 // Workbench rather than the stonecutter: it's rough stone bars, not cut stone.
@@ -119,6 +123,7 @@ namespace QuanPieces.Pieces
             prefab.tag = "Untagged";
 
             AddSupportStrips(prefab, roof);
+            AddWalkSurface(prefab, roof);
             if (!ReplaceVisual(prefab, stoneMaterial))
             {
                 return false;
@@ -159,6 +164,27 @@ namespace QuanPieces.Pieces
                 wearNTear.m_destroyedEffect = stoneWear.m_destroyedEffect;
                 wearNTear.m_switchEffect = stoneWear.m_switchEffect;
             }
+        }
+
+        /// <summary>
+        /// A solid slab the size of the trigger, on the "blocker" layer: the layer vanilla uses for invisible walls.
+        /// Players, creatures and dropped items collide with it (and characters count it as ground), so the flue can
+        /// be walked on like a grate. Smoke doesn't collide with that layer, so it still rises straight through.
+        /// </summary>
+        private static void AddWalkSurface(GameObject prefab, BoxCollider roof)
+        {
+            var layer = LayerMask.NameToLayer(WalkLayer);
+            if (layer < 0)
+            {
+                QuanPiecesPlugin.Log.LogWarning($"Chimney flue: no '{WalkLayer}' layer; the flue can't be walked on.");
+                return;
+            }
+
+            var surface = new GameObject("walk_surface") { layer = layer };
+            surface.transform.SetParent(prefab.transform, false);
+            var box = surface.AddComponent<BoxCollider>();
+            box.center = roof.center;
+            box.size = roof.size;
         }
 
         /// <summary>Four thin solid strips along the tile's edges, flush with the trigger slab.</summary>

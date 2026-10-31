@@ -12,7 +12,7 @@ Everyone on a server needs the mod installed: the server and every player connec
 
 <p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chimney-flue.jpg" alt="Quan's Chimney Flue seen from below, its stone louvres above a lit campfire inside a wooden chimney" width="480"></p>
 
-<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chimney-flue-tooltip.png" alt="The flue's build-menu card: Blocks rain but not smoke. Must be 1.5m or more above a fireplace. For Valyyn. Costs 5 Stone at a Workbench." width="480"></p>
+<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/chimney-flue-tooltip.png" alt="The flue's build-menu card: Blocks rain but not smoke. Must be 2m or more above a fireplace. For Valyyn. Costs 5 Stone at a Workbench." width="480"></p>
 
 A 2x2 chimney flue that sits above your fireplace, inside your chimney, and stops the rain putting out your
 fire whilst still letting the smoke escape. No longer do you need a roof over your chimneys!
@@ -21,12 +21,13 @@ fire whilst still letting the smoke escape. No longer do you need a roof over yo
 |---|---|---|
 | 5 Stone | Workbench | 2x2, snaps and tiles with itself to make larger flues |
 
-> **Place it at least 1.5 m above your fire**, so the smoke can form without putting the fire out.
+> **Place it at least 2 m above your fire**, so the smoke can form without putting the fire out.
 
 - It only needs to cover the space directly above the fire. For wider chimneys, snap several together to
   fill the opening.
 - It doesn't change how smoke behaves: a chimney that backs smoke up without the flue still will with it.
-- You can walk through it. Only its edges are solid.
+- You can walk on it like a grate, and so can creatures; items dropped on it stay there. Smoke still rises
+  straight through.
 
 </details>
 

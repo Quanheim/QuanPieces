@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 - 2026-10-31
+
+- Quan's Chimney Flue can now be walked on like a grate. Smoke still rises straight through it.
+
 ## 1.2.1 - 2026-10-31
 
 - Planters now accept everything you plant with the cultivator, not only crop and tree seedlings: for example

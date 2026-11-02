@@ -30,8 +30,9 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
   storage that looks like a trough.
 - **No mod on the server feeds from chests yet.** Checked the Default Gale profile (74 mods) on 2 Nov 2026: nothing
   touches tame hunger and containers together. OttoFuel (the auto-fuel mod) only refuels fireplaces, smelters,
-  ovens and ballistas from nearby chests; LetMeTameYou uses the vanilla ground-eating code. If a feeding mod is
-  added, test it with the troughs (see Testing).
+  ovens and ballistas from nearby chests; LetMeTameYou uses the vanilla ground-eating code. Feeding from chests came
+  from **BetterTames**, which was removed; **QuanCompanions** takes it over (its feature list, A5.1 to A5.4, with a
+  note about these troughs). Test the troughs with it (see Testing).
 - **The "full" look stays within scope.** A small component on our own piece that shows or hides a fill model
   (grain or hay in the food trough, a water surface in the water trough) when the trough's own inventory changes.
   It reads only its own container and patches nothing.
@@ -60,8 +61,8 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 - **AzuAutoStore:** it moves items lying on the ground into nearby chests. Food dropped in a pen for animals may get
   pulled into a trough (or any nearby chest). Check what it does near a trough.
 - **AzuCraftyBoxes:** it crafts from nearby chests, so trough contents may be used for crafting nearby. Check.
-- **Any feeding mod added later:** check it finds the troughs. Most look for a vanilla `Container`, which the clone
-  keeps.
+- **QuanCompanions feeding (A5):** once built, check tames eat from the troughs like any player-built chest. It will
+  look for a vanilla `Container`, which the clone keeps.
 - **The full look:** shows on placing an item, hides on taking the last one, and is right for every player after a
   relog (it must follow the synced inventory, not one player's actions).
 

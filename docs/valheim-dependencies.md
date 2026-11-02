@@ -129,6 +129,7 @@ after each update.
 | `wood_pole` | Coop and planter wood materials (`New`, `WornBroken`). | Renamed. |
 | `wood_door` | Coop wood support, hit/break/place effects, door sounds. | Renamed. |
 | `wood_floor_1x1` | Planter base: piece setup, plank mesh, woodpole material. | Renamed. |
+| `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |
 | `Custom/Piece` shader | Properties `_RippleDistance`, `_TriplanarMap`, `_TriplanarScale`, `_TriplanarLocalPos`, `_BumpMap`, `_Glossiness`, `_Cutoff`, keywords `_EMISSION`, `_NORMALMAP`. | Shader or property renamed. |
 | Terrain material arrays | `terrain_d_array` and `terrain_n_array` for planter soil. | Renamed. |
 | Layers | `piece`, `piece_nonsolid`, `blocker`, `Default`, `static_solid`, `Default_small`, and the hover list in `Player.m_interactMask`. | Renamed or reassigned. |

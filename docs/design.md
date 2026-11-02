@@ -12,6 +12,9 @@ Status: idea, 2 Nov 2026 (Quandru). Nothing built.
 
 - A **feeding trough** piece for animal pens: **one piece, part food trough and part water trough** (agreed 2 Nov
   2026).
+- **Look:** a **wooden food trough with a metal bucket** for the water. One size, **2 to 3 m long** (agreed 2 Nov
+  2026).
+- **Built at the Workbench** (agreed 2 Nov 2026).
 - It works as a **plain chest** and holds items. That's the point of cloning the chest: a vanilla `Container` is
   what other mods look for when they feed animals from chests, so the trough works with them. Without a feeding mod
   it's simply a display piece that stores things.
@@ -50,11 +53,13 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 
 ### Suggestions (for Quandru to pick from)
 
-1. **Two sizes.** A short trough (2 m, chest-sized inventory, 10 Wood) and a long one (4 m, which snaps end to end
-   for long pens, a bigger inventory, around 20 Wood). Long rows of troughs suit pens better than single boxes.
-2. **Kitbash parts to try.** Wood planks or `wood_beam` cubes for the sides and ends, `wood_pole` for the legs,
-   the straw from `wood_roof` (already used by the chicken coop) or barley meshes for the food fill, and a water
-   surface material for the water fill.
+1. **Kitbash parts to try** (prefab names to confirm in game):
+   - **Trough:** wood planks or `wood_beam` cubes for the sides and ends, `wood_pole` for the legs.
+   - **Food fill:** the straw from `wood_roof` (already used by the chicken coop) or barley meshes.
+   - **Metal bucket:** a scaled-down cauldron (`piece_cauldron`) or the iron bands of a barrel; the iron material
+     from `iron_grate` or the iron walls (already used by the coop and flue) for a plain metal look.
+   - **Water fill:** the water surface in the hot tub (`piece_bathtub`), scaled to the top of the bucket.
+2. **Snapping end to end**, so a row of troughs lines a pen neatly. Cheap to add with snap points at each end.
 
 ### Testing (beyond the usual build and placement checks)
 
@@ -70,5 +75,5 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 
 ### Open questions
 
-- One size or two (or more)?
-- Which crafting station: none (like the chest) or the Workbench?
+- Exact length (2 or 3 m) and inventory size: settle when kitbashing.
+- Cost: 10 Wood like the chest, or a little iron for the bucket?

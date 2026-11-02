@@ -10,13 +10,16 @@ Status: idea, 2 Nov 2026 (Quandru). Nothing built.
 
 ### What Quandru asked for
 
-- One or more **eating trough** pieces for animal pens.
-- Each works as a **plain chest**: a container, nothing more.
-- Probably a **clone of the vanilla early wooden chest** (`piece_chest_wood`; name to confirm in game), keeping its
-  cost of **10 Wood**.
+- A **feeding trough** piece for animal pens: **one piece, part food trough and part water trough** (agreed 2 Nov
+  2026).
+- It works as a **plain chest** and holds items. That's the point of cloning the chest: a vanilla `Container` is
+  what other mods look for when they feed animals from chests, so the trough works with them. Without a feeding mod
+  it's simply a display piece that stores things.
+- A **clone of the vanilla early wooden chest** (`piece_chest_wood`; name to confirm in game), keeping its cost of
+  **10 Wood**.
 - Visuals of a feeding trough instead of a chest. Quandru will **kitbash** the look later.
-- **A two-part set:** a **food trough** and a **water trough** that sit side by side (agreed 2 Nov 2026).
-- **The trough looks full when it has something in it** (agreed 2 Nov 2026; see below).
+- **Empty or full together:** both halves look empty while the chest is empty. As soon as it holds anything, both
+  show full: feed in the food half, water in the water half (agreed 2 Nov 2026; see below).
 
 ### Scope: pieces only
 
@@ -27,15 +30,16 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 
 - **Vanilla tames don't eat from containers.** `MonsterAI.FindClosestConsumableItem` only finds food items lying
   on the ground (the `item` layer) within `m_consumeSearchRange` (5 m by default). On their own, the troughs are
-  storage that looks like a trough.
+  storage that looks like a trough, until a feeding mod uses it.
 - **No mod on the server feeds from chests yet.** Checked the Default Gale profile (74 mods) on 2 Nov 2026: nothing
   touches tame hunger and containers together. OttoFuel (the auto-fuel mod) only refuels fireplaces, smelters,
   ovens and ballistas from nearby chests; LetMeTameYou uses the vanilla ground-eating code. Feeding from chests came
   from **BetterTames**, which was removed; **QuanCompanions** takes it over (its feature list, A5.1 to A5.4, with a
   note about these troughs). Test the troughs with it (see Testing).
-- **The "full" look stays within scope.** A small component on our own piece that shows or hides a fill model
-  (grain or hay in the food trough, a water surface in the water trough) when the trough's own inventory changes.
-  It reads only its own container and patches nothing.
+- **The "full" look stays within scope.** A small component on our own piece shows both fill models (grain or hay
+  in the food half, a water surface in the water half) when the trough's own inventory has anything in it, and hides
+  both when it's empty. It reads only its own container and patches nothing. The water is purely a look: nothing
+  in the chest has to be water.
 - **The chest's lid.** The vanilla chest opens and closes a lid (`Container` swaps its `m_open` and `m_closed`
   objects). A trough has no lid, so the clone needs both pointed at the trough model, or the open/closed objects
   removed, or the lid will still pop up.
@@ -46,11 +50,9 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 
 ### Suggestions (for Quandru to pick from)
 
-1. **Two sizes.** A short trough (1x2 m, chest-sized inventory, 10 Wood) and a long one (4 m, which snaps end to end
+1. **Two sizes.** A short trough (2 m, chest-sized inventory, 10 Wood) and a long one (4 m, which snaps end to end
    for long pens, a bigger inventory, around 20 Wood). Long rows of troughs suit pens better than single boxes.
-2. **The pair as one piece or two.** Either a single piece with food on one side and water on the other, or two
-   pieces that snap side by side. Two pieces are more flexible (water only in some pens); one piece is quicker to place.
-3. **Kitbash parts to try.** Wood planks or `wood_beam` cubes for the sides and ends, `wood_pole` for the legs,
+2. **Kitbash parts to try.** Wood planks or `wood_beam` cubes for the sides and ends, `wood_pole` for the legs,
    the straw from `wood_roof` (already used by the chicken coop) or barley meshes for the food fill, and a water
    surface material for the water fill.
 
@@ -63,12 +65,10 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 - **AzuCraftyBoxes:** it crafts from nearby chests, so trough contents may be used for crafting nearby. Check.
 - **QuanCompanions feeding (A5):** once built, check tames eat from the troughs like any player-built chest. It will
   look for a vanilla `Container`, which the clone keeps.
-- **The full look:** shows on placing an item, hides on taking the last one, and is right for every player after a
-  relog (it must follow the synced inventory, not one player's actions).
+- **The full look:** both halves fill on placing an item and empty on taking the last one, including when a feeding
+  mod takes it. Right for every player after a relog (it must follow the synced inventory, not one player's actions).
 
 ### Open questions
 
 - One size or two (or more)?
-- Food and water as one piece or two?
 - Which crafting station: none (like the chest) or the Workbench?
-- Does the water trough hold anything, or is it a decorative piece with no inventory?

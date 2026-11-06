@@ -77,3 +77,18 @@ behaviour**. The troughs are plain chests with a different look. Animals eating 
 
 - Exact length (2 or 3 m) and inventory size: settle when kitbashing.
 - Cost: 10 Wood like the chest, or a little iron for the bucket?
+
+## Tar and Clay extractors
+
+Status: idea, 6 Nov 2026 (Quandru). Nothing built or designed yet.
+
+### What Quandru asked for
+
+Two extractor pieces: one for tar and one for clay.
+
+### Open questions
+
+- How each works: placed on a source (a tar pit, a clay deposit) and producing over time, like vanilla's sap
+  collector, or something else.
+- Where clay comes from in the current game and modpack, so the extractor fits it.
+- Cost, crafting station, output rate and capacity, and whether they need fuel.

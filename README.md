@@ -113,11 +113,13 @@ under the eaves in front of a half wall. Plant straight into them with the culti
 <td><img src="docs/images/chicken-coop.jpg" alt="Hen Solo and Cluckbacca safe inside their coop" width="240"></td>
 <td><img src="docs/images/chicken-coop-door-wall.jpg" alt="The Chicken Coop Wall and the Chicken Coop Door, wooden bars with an iron latch on the gate" width="240"></td>
 <td><img src="docs/images/chicken-coop-egg.jpg" alt="Picking up a warm egg through the coop wall's bars" width="240"></td>
+<td><img src="docs/images/floor-heater.jpg" alt="Quan's Floor Heater glowing on the ground beside a raised coop, warming its floors" width="240"></td>
 </tr>
 <tr>
 <td><img src="docs/images/chicken-coop-floor-card.png" alt="Build-menu card: Quan's Chicken Coop Floor, 2 Wood at a Workbench" width="240"></td>
 <td><img src="docs/images/chicken-coop-wall-card.png" alt="Build-menu card: Quan's Chicken Coop Wall, 2 Wood at a Workbench" width="240"></td>
 <td><img src="docs/images/chicken-coop-door-card.png" alt="Build-menu card: Quan's Chicken Coop Door, 2 Wood at a Workbench" width="240"></td>
+<td><img src="docs/images/floor-heater-card.png" alt="Build-menu card: Quan's Floor Heater, 5 Stone at a Workbench" width="240"></td>
 </tr>
 </table>
 

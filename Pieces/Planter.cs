@@ -133,7 +133,7 @@ namespace QuanPieces.Pieces
             visual.transform.SetParent(prefab.transform, false);
             var renderers = new List<Renderer>
             {
-                AddMesh(visual.transform, "rim", BuildRim(cube, length), beamFilter.GetComponent<MeshRenderer>().sharedMaterials),
+                AddMesh(visual.transform, "rim", BuildRim(cube, length, Width, RimTop, RimHeight, RimWidth), beamFilter.GetComponent<MeshRenderer>().sharedMaterials),
                 AddBed(visual.transform, beamFilter.sharedMesh, plank.GetComponent<MeshRenderer>(), length),
                 AddMesh(visual.transform, "soil", BuildSoil(length), new[] { PlanterSoil.GetSoilMaterial(plank.GetComponent<MeshRenderer>().sharedMaterial) })
             };
@@ -170,14 +170,16 @@ namespace QuanPieces.Pieces
         }
 
         /// <summary>
-        /// The four rim beams as one mesh: each is the vanilla beam's cube, made half as wide, built past both
-        /// corners and cut along the corner diagonals, so neighbouring beams meet in a mitre.
+        /// The four rim beams as one mesh: each is the vanilla beam's cube, made <paramref name="beamWidth"/> wide
+        /// and <paramref name="height"/> tall, built past both corners and cut along the corner diagonals, so
+        /// neighbouring beams meet in a mitre. Their outer faces are on the length x width footprint, their tops at
+        /// <paramref name="top"/>. Also used by the floor heater's box.
         /// </summary>
-        private static MeshData BuildRim(MeshData cube, float length)
+        internal static MeshData BuildRim(MeshData cube, float length, float width, float top, float height, float beamWidth)
         {
             var halfL = length / 2f;
-            var halfW = Width / 2f;
-            var y = RimTop - RimHeight / 2f;
+            var halfW = width / 2f;
+            var y = top - height / 2f;
             var rim = new MeshData();
 
             // Long sides: 2 m beams end to end, like vanilla beams, with a plain joint where they meet. At a corner
@@ -195,8 +197,8 @@ namespace QuanPieces.Pieces
                     // Exactly a vanilla 2 m beam (at half width), so the joint between two looks like vanilla's.
                     // Only its corner end is then pushed out past the mitre, so the cut removes that end's bevel
                     // and the outer corner stays square.
-                    var side = new MeshData().Append(cube, Matrix4x4.TRS(new Vector3(centreX, y, sz * (halfW - RimWidth / 2f)),
-                                                                         Quaternion.identity, new Vector3(segmentLength, RimHeight, RimWidth)));
+                    var side = new MeshData().Append(cube, Matrix4x4.TRS(new Vector3(centreX, y, sz * (halfW - beamWidth / 2f)),
+                                                                         Quaternion.identity, new Vector3(segmentLength, height, beamWidth)));
                     for (var i = 0; i < side.Positions.Count; i++)
                     {
                         var p = side.Positions[i];
@@ -223,8 +225,8 @@ namespace QuanPieces.Pieces
 
             foreach (var sx in new[] { -1f, 1f })
             {
-                var end = new MeshData().Append(cube, Matrix4x4.TRS(new Vector3(sx * (halfL - RimWidth / 2f), y, 0f), Quaternion.identity,
-                                                                    new Vector3(RimWidth, RimHeight, Width + 2f * MitreOverrun)));
+                var end = new MeshData().Append(cube, Matrix4x4.TRS(new Vector3(sx * (halfL - beamWidth / 2f), y, 0f), Quaternion.identity,
+                                                                    new Vector3(beamWidth, height, width + 2f * MitreOverrun)));
                 foreach (var sz in new[] { -1f, 1f })
                 {
                     end = end.Clip(new Vector3(-sx, 0f, sz), halfW - halfL);
@@ -341,7 +343,7 @@ namespace QuanPieces.Pieces
             }
         }
 
-        private static void AddCollider(Transform parent, string name, Vector3 centre, Vector3 size)
+        internal static void AddCollider(Transform parent, string name, Vector3 centre, Vector3 size)
         {
             var part = new GameObject(name) { layer = parent.gameObject.layer };
             part.transform.SetParent(parent, false);
@@ -349,8 +351,11 @@ namespace QuanPieces.Pieces
             part.AddComponent<BoxCollider>().size = size;
         }
 
-        /// <summary>The four bottom corners, like a floor's, so it snaps to the floor grid and to other planters.</summary>
-        private static void AddSnapPoints(Transform parent, float length)
+        /// <summary>
+        /// The four bottom corners of a length x 1 m footprint, like a floor's, so it snaps to the floor grid and to
+        /// other planters. Also used by the floor heater.
+        /// </summary>
+        internal static void AddSnapPoints(Transform parent, float length)
         {
             var i = 1;
             foreach (var sx in new[] { -1f, 1f })

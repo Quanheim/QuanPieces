@@ -78,9 +78,6 @@ a change in behaviour isn't, so list the ones whose behaviour the mod depends on
 | `Piece.m_placeEffect` | Copied from source pieces. |
 | `Piece.m_groundOnly` | Placement rules copied from source pieces (with the other placement flags beside it). |
 | `Piece.m_clipEverything` | Placement rules copied from source pieces. |
-| `Piece.m_groundPiece` | Cleared on the floor heater so it can go on floors. |
-| `Piece.m_comfort` | Zeroed on the floor heater (a campfire's comfort). |
-| `Fireplace` | Removed from the floor heater's campfire clone. |
 | `EffectArea` | Coop floor warmth: a Heat area, switched on and off by `CoopFloorWarmth`. |
 | `EffectArea.Type` | Heat. |
 | `Interactable` | Floor heater on/off switch. |
@@ -128,7 +125,7 @@ after each update.
 |---|---|---|
 | `piece_brazierceiling01` | Base of both street lights: its Fireplace. Children `New`, `_enabled_high/Point light`, `_enabled_high/FireWarmth`, `collider (5)`, a SmokeSpawner. | Renamed, or those children move. |
 | `wood_pole2` | Brazier street light post: mesh, material, placement rules, place effect. | Renamed or re-meshed. |
-| `wood_beam` | Brazier street light arm, planter rim: cube mesh, woodwall material. | Renamed. |
+| `wood_beam` | Brazier street light arm, planter rim, floor heater box: cube mesh, woodwall material. | Renamed. |
 | `piece_dvergr_lantern_pole` | Lantern street light: lantern, chain, light, flare (children under `New/`), recipe, `_enabled`. | Renamed or children move. |
 | `Piece_grausten_pillarbase_tapered` | Lantern street light base, place effect, support. | Renamed. |
 | `Piece_grausten_pillarbase_small` | Lantern street light frame material. | Renamed. |
@@ -138,14 +135,14 @@ after each update.
 | `iron_grate` | Coop door base (`door`, `New`). | Renamed or children move. |
 | `wood_floor` | Coop floor base. | Renamed. |
 | `wood_roof` | Coop floor straw meshes, material, cost. | Renamed. |
-| `fire_pit` | Floor heater base: stones (`New`, logs are its `Cube` children), glowing ash `_enabled_high/Quad (1)`, light `_enabled_low/Point light`; `_enabled`, `_enabled_high`, `_enabled_low`, `PlayerBase` removed. | Renamed or those children move. |
+| `fire_pit` | Floor heater: ash bed `New/Quad`, glowing ash `_enabled_high/Quad (1)` (meshes and materials), light `_enabled_low/Point light` (copied). | Renamed or those children move. |
 | `Stone` | Floor heater cost. | Item renamed. |
 | `iron_wall_2x2` | Coop wall base. | Renamed. |
 | `iron_floor_2x2` | Chimney flue base (`New`). | Renamed. |
 | `stone_floor_2x2` | Chimney flue texture and sounds. | Renamed. |
 | `wood_pole` | Coop and planter wood materials (`New`, `WornBroken`). | Renamed. |
 | `wood_door` | Coop wood support, hit/break/place effects, door sounds. | Renamed. |
-| `wood_floor_1x1` | Planter base: piece setup, plank mesh, woodpole material. | Renamed. |
+| `wood_floor_1x1` | Planter and floor heater base: piece setup, plank mesh, woodpole material. | Renamed. |
 | `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |
 | `Custom/Piece` shader | Properties `_RippleDistance`, `_TriplanarMap`, `_TriplanarScale`, `_TriplanarLocalPos`, `_BumpMap`, `_Glossiness`, `_Cutoff`, keywords `_EMISSION`, `_NORMALMAP`. | Shader or property renamed. |
 | Terrain material arrays | `terrain_d_array` and `terrain_n_array` for planter soil. | Renamed. |

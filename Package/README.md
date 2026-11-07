@@ -126,17 +126,17 @@ gate to match.
 
 | | Coop Floor | Floor Heater | Coop Wall | Coop Door |
 |---|---|---|---|---|
-| **Size** | 2x2 | Campfire-sized | 2x2 | 2x2 |
+| **Size** | 2x2 | 1x1 | 2x2 | 2x2 |
 | **Cost** | 2 Wood | 5 Stone | 2 Wood | 2 Wood |
 | **Crafting station** | Workbench | Workbench | Workbench | Workbench |
 
 - **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. While a floor heater
   that's on is within 10 m, it gives off warmth like a fire, so eggs laid on it hatch. As in vanilla, they also
   need a roof over them. Without a heater nearby it stays cold, and eggs on it wait to be collected.
-- **Floor Heater**: a ring of hot stones. Use it to turn it on or off: on, the coop floors around it are warm
-  and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again from
-  scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it can
-  sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
+- **Floor Heater**: a small wooden box of glowing embers. Use it to turn it on or off: on, the coop floors around
+  it are warm and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again
+  from scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it
+  can sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
   it's warming.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.

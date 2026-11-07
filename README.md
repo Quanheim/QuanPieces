@@ -126,17 +126,17 @@ gate to match.
 
 | | Coop Floor | Floor Heater | Coop Wall | Coop Door |
 |---|---|---|---|---|
-| **Size** | 2x2 | Campfire-sized | 2x2 | 2x2 |
+| **Size** | 2x2 | 1x1 | 2x2 | 2x2 |
 | **Cost** | 2 Wood | 5 Stone | 2 Wood | 2 Wood |
 | **Crafting station** | Workbench | Workbench | Workbench | Workbench |
 
 - **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. While a floor heater
   that's on is within 10 m, it gives off warmth like a fire, so eggs laid on it hatch. As in vanilla, they also
   need a roof over them. Without a heater nearby it stays cold, and eggs on it wait to be collected.
-- **Floor Heater**: a ring of hot stones. Use it to turn it on or off: on, the coop floors around it are warm
-  and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again from
-  scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it can
-  sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
+- **Floor Heater**: a small wooden box of glowing embers. Use it to turn it on or off: on, the coop floors around
+  it are warm and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again
+  from scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it
+  can sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
   it's warming.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.
@@ -275,13 +275,14 @@ a roof, checked separately). The box starts inactive; `CoopFloorWarmth` checks o
 for a loaded heater that's on within 10 m of the floor's centre and switches the box to match. Every client works
 this out for itself from the heaters' shared state. It costs the same as the thatch roof, read from its recipe.
 
-**Floor heater** (`Pieces/FloorHeater.cs`, `Pieces/FloorHeaterControl.cs`): a clone of the vanilla campfire
-(`fire_pit`) with its `Fireplace`, `_enabled`, `_enabled_high`, `_enabled_low`, `PlayerBase` and logs removed,
-keeping the ring of stones and the ash bed. The glowing ash (`_enabled_high/Quad (1)`) and the low fire's light
-(`_enabled_low/Point light`) move into an `embers` child shown while it's on. `FloorHeaterControl` is the switch:
-the on/off state is a ZDO bool (`Quan_floor_heater_lit`, on by default), set by the owner through an RPC, and
-wards are respected. Ground-only placement and comfort are cleared. Version 1.3.0's unheated floor
-(`Quan_chicken_coop_floor_unheated`) was removed in 1.4.0.
+**Floor heater** (`Pieces/FloorHeater.cs`, `Pieces/FloorHeaterControl.cs`): kitbashed on the vanilla 1x1 wood
+floor (`wood_floor_1x1`) for its piece setup, wood support and placement. Its planks are replaced by a 1 m square
+of 0.2 m beams (the planter's mitred rim, 0.25 m tall), a plank-material base inside, and the campfire's
+(`fire_pit`) ash bed (`New/Quad`) scaled down onto it. The campfire's glowing ash (`_enabled_high/Quad (1)`) and
+low-fire light (`_enabled_low/Point light`) are copied into an `embers` child shown while it's on. It's not a
+`Fireplace`, so nothing checks fuel, rain, cover or smoke. `FloorHeaterControl` is the switch: the on/off state is
+a ZDO bool (`Quan_floor_heater_lit`, on by default), set by the owner through an RPC, and wards are respected.
+Version 1.3.0's unheated floor (`Quan_chicken_coop_floor_unheated`) was removed in 1.4.0.
 
 **Door** (`Pieces/ChickenCoopDoor.cs`): the vanilla Iron Gate (`iron_grate`), 2x3, made 1 m shorter by reshaping
 rather than scaling. The frame's top bar drops 1 m and the uprights shorten. The swinging leaf is split into

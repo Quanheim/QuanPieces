@@ -46,8 +46,8 @@ namespace QuanPieces.Pieces
             CancelInvoke(nameof(UpdateEmbers));
         }
 
-        /// <summary>On ("lit"). A new heater starts on.</summary>
-        internal bool IsLit => _nview != null && _nview.IsValid() && _nview.GetZDO().GetBool(LitKey, true);
+        /// <summary>On ("lit"). A new heater starts off.</summary>
+        internal bool IsLit => _nview != null && _nview.IsValid() && _nview.GetZDO().GetBool(LitKey, false);
 
         internal static bool IsLitHeaterNear(Vector3 point)
         {

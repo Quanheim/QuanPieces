@@ -133,11 +133,11 @@ gate to match.
 - **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. While a floor heater
   that's on is within 10 m, it gives off warmth like a fire, so eggs laid on it hatch. As in vanilla, they also
   need a roof over them. Without a heater nearby it stays cold, and eggs on it wait to be collected.
-- **Floor Heater**: a small wooden box of glowing embers. Use it to turn it on or off: on, the coop floors around
-  it are warm and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again
-  from scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it
-  can sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
-  it's warming.
+- **Floor Heater**: a small wooden box of glowing embers. It's built switched off; use it to turn it on or off: on,
+  the coop floors around it are warm and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already
+  growing starts again from scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke
+  or open sky, so it can sit under the edge of a raised coop or out in the open beside it. Its hover text shows how
+  many coop floors it's warming.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.
 - **Door**: a 2x2 gate of wooden bars with an iron latch. It opens and closes like any door.
@@ -281,7 +281,7 @@ of 0.2 m beams (the planter's mitred rim, 0.25 m tall), a plank-material base in
 (`fire_pit`) ash bed (`New/Quad`) scaled down onto it. The campfire's glowing ash (`_enabled_high/Quad (1)`) and
 low-fire light (`_enabled_low/Point light`) are copied into an `embers` child shown while it's on. It's not a
 `Fireplace`, so nothing checks fuel, rain, cover or smoke. `FloorHeaterControl` is the switch: the on/off state is
-a ZDO bool (`Quan_floor_heater_lit`, on by default), set by the owner through an RPC, and wards are respected.
+a ZDO bool (`Quan_floor_heater_lit`, off by default), set by the owner through an RPC, and wards are respected.
 Version 1.3.0's unheated floor (`Quan_chicken_coop_floor_unheated`) was removed in 1.4.0.
 
 **Door** (`Pieces/ChickenCoopDoor.cs`): the vanilla Iron Gate (`iron_grate`), 2x3, made 1 m shorter by reshaping

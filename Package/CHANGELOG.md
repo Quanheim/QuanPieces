@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.3 - 2026-11-07
+
+- New piece: Quan's Unheated Chicken Coop Floor. The same coop floor without the warmth, so eggs laid on it
+  don't hatch and can be collected.
+
 ## 1.2.2 - 2026-10-31
 
 - Quan's Chimney Flue can now be walked on like a grate. Smoke still rises straight through it.

@@ -121,8 +121,8 @@ under the eaves in front of a half wall. Plant straight into them with the culti
 </tr>
 </table>
 
-Three pieces for giving your chickens a proper home: a warm thatched floor, walls of wooden bars and a gate to
-match.
+Pieces for giving your chickens a proper home: a thatched floor (warm, or unheated if you'd rather collect the
+eggs), walls of wooden bars and a gate to match.
 
 | | Coop Floor | Coop Wall | Coop Door |
 |---|---|---|---|
@@ -132,6 +132,8 @@ match.
 
 - **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. It gives off warmth like
   a fire, so eggs laid on it hatch. As in vanilla, they also need a roof over them. Standing on it warms you too.
+- **Unheated Floor**: the same floor with no warmth, so eggs laid on it don't hatch and you can collect them.
+  Same size, cost and crafting station as the warm one.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.
 - **Door**: a 2x2 gate of wooden bars with an iron latch. It opens and closes like any door.
@@ -257,7 +259,7 @@ so the owning mod's refund rules apply, plus the harvest if ripe.
 </details>
 
 <details>
-<summary><b>Quan's Chicken Coop</b> (<code>Quan_chicken_coop_floor</code>, <code>Quan_chicken_coop_wall</code>, <code>Quan_chicken_coop_door</code>)</summary>
+<summary><b>Quan's Chicken Coop</b> (<code>Quan_chicken_coop_floor</code>, <code>Quan_chicken_coop_floor_unheated</code>, <code>Quan_chicken_coop_wall</code>, <code>Quan_chicken_coop_door</code>)</summary>
 
 **Floor** (`Pieces/ChickenCoopFloor.cs`): the vanilla 2x2 wood floor (`wood_floor`) with the 26° thatch roof's
 (`wood_roof`) three straw layers laid flat on top. The straw is taken into the roof's own space and unrolled:
@@ -265,7 +267,8 @@ along the slope, the 2.24 m sloped span maps onto the floor's 2 m while the over
 roof's exact length; height above the slope is squashed into a 5 cm layer lying on the planks. The floor's
 collider is raised to halfway up the thatch, so small animals stand on it. A trigger box over the floor on the
 `character_trigger` layer carries an `EffectArea` of type Heat, which is what `EggGrow` checks for (eggs also need
-a roof, checked separately). It costs the same as the thatch roof, read from its recipe.
+a roof, checked separately). It costs the same as the thatch roof, read from its recipe. The unheated floor
+(`Quan_chicken_coop_floor_unheated`) is built the same way without the Heat trigger.
 
 **Door** (`Pieces/ChickenCoopDoor.cs`): the vanilla Iron Gate (`iron_grate`), 2x3, made 1 m shorter by reshaping
 rather than scaling. The frame's top bar drops 1 m and the uprights shorten. The swinging leaf is split into

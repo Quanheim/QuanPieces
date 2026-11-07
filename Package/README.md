@@ -121,8 +121,8 @@ under the eaves in front of a half wall. Plant straight into them with the culti
 </tr>
 </table>
 
-Three pieces for giving your chickens a proper home: a warm thatched floor, walls of wooden bars and a gate to
-match.
+Pieces for giving your chickens a proper home: a thatched floor (warm, or unheated if you'd rather collect the
+eggs), walls of wooden bars and a gate to match.
 
 | | Coop Floor | Coop Wall | Coop Door |
 |---|---|---|---|
@@ -132,6 +132,8 @@ match.
 
 - **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. It gives off warmth like
   a fire, so eggs laid on it hatch. As in vanilla, they also need a roof over them. Standing on it warms you too.
+- **Unheated Floor**: the same floor with no warmth, so eggs laid on it don't hatch and you can collect them.
+  Same size, cost and crafting station as the warm one.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.
 - **Door**: a 2x2 gate of wooden bars with an iron latch. It opens and closes like any door.

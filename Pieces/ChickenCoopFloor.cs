@@ -18,16 +18,23 @@ namespace QuanPieces.Pieces
     /// - their height above the slope is squashed into a thin layer just above the planks.
     /// The floor's collider is raised to the middle of the thatch, so small animals stand on it. It gives off
     /// warmth (a Heat effect area, like a fire) so eggs on it hatch, and it doesn't weather in the rain, like a roof.
+    ///
+    /// Registered twice: the warm floor, and an unheated one with no warmth, so eggs laid on it stay eggs to collect.
     /// </summary>
     internal static class ChickenCoopFloor
     {
         private const string PrefabName = "Quan_chicken_coop_floor";
+        private const string UnheatedPrefabName = "Quan_chicken_coop_floor_unheated";
         private const string BasePrefab = "wood_floor"; // 2x2 wood floor
         private const string RoofPrefab = "wood_roof";  // 26° thatch roof: straw meshes, material, cost
 
         private const string Description =
             "A wooden floor laid with low, warm thatch: little legs stand tall on it and eggs stay cosy enough to hatch. " +
             "Give Hen Solo and Cluckbacca a proper coop floor to keep them comfy. For Valyyn.";
+
+        private const string UnheatedDescription =
+            "A wooden floor laid with low thatch, but no warmth: little legs stand tall on it and eggs stay eggs, " +
+            "ready to collect. For Valyyn.";
 
         // The 26° roof in its own space: it rises towards -z, from (y 0, z 1) to (y 1, z -1).
         private static readonly Vector3 SlopeCentre = new Vector3(0f, 0.5f, 0f);
@@ -44,21 +51,26 @@ namespace QuanPieces.Pieces
         // The warm area above the floor reaches this high: eggs, chickens and the player standing on it.
         private const float WarmthHeight = 1f;
 
-        public static void Register()
+        public static void RegisterWarm() => Register(true);
+
+        public static void RegisterUnheated() => Register(false);
+
+        private static void Register(bool warm)
         {
+            var label = warm ? "Chicken coop floor" : "Unheated chicken coop floor";
             var floor = PrefabManager.Instance.GetPrefab(BasePrefab);
             var roof = PrefabManager.Instance.GetPrefab(RoofPrefab);
             var roofPiece = roof ? roof.GetComponent<Piece>() : null;
             if (floor == null || roofPiece == null)
             {
-                QuanPiecesPlugin.Log.LogWarning($"'{BasePrefab}' or '{RoofPrefab}' not found; chicken coop floor skipped.");
+                QuanPiecesPlugin.Log.LogWarning($"'{BasePrefab}' or '{RoofPrefab}' not found; {label.ToLowerInvariant()} skipped.");
                 return;
             }
 
             var config = new PieceConfig
             {
-                Name = "Quan's Chicken Coop Floor",
-                Description = Description,
+                Name = warm ? "Quan's Chicken Coop Floor" : "Quan's Unheated Chicken Coop Floor",
+                Description = warm ? Description : UnheatedDescription,
                 PieceTable = PieceTables.Hammer,
                 Category = QuanPiecesPlugin.HammerCategory,
                 CraftingStation = roofPiece.m_craftingStation ? roofPiece.m_craftingStation.name : CraftingStations.Workbench,
@@ -68,8 +80,8 @@ namespace QuanPieces.Pieces
                     .ToArray()
             };
 
-            var customPiece = new CustomPiece(PrefabName, BasePrefab, config);
-            if (!Build(customPiece.PiecePrefab, roof))
+            var customPiece = new CustomPiece(warm ? PrefabName : UnheatedPrefabName, BasePrefab, config);
+            if (!Build(customPiece.PiecePrefab, roof, warm))
             {
                 return;
             }
@@ -81,13 +93,13 @@ namespace QuanPieces.Pieces
             }
             else
             {
-                QuanPiecesPlugin.Log.LogWarning("Chicken coop floor: icon render failed; using the wood floor's icon.");
+                QuanPiecesPlugin.Log.LogWarning($"{label}: icon render failed; using the wood floor's icon.");
             }
 
             PieceManager.Instance.AddPiece(customPiece);
         }
 
-        private static bool Build(GameObject prefab, GameObject roof)
+        private static bool Build(GameObject prefab, GameObject roof, bool warm)
         {
             var straws = roof.GetComponentsInChildren<MeshFilter>(true)
                 .Where(f => f.name.StartsWith("straw") && f.transform.parent != null && f.transform.parent.name == "high"
@@ -122,7 +134,10 @@ namespace QuanPieces.Pieces
             IncludeInLods(prefab, renderer);
 
             RaiseWalkSurface(prefab);
-            AddWarmth(prefab);
+            if (warm)
+            {
+                AddWarmth(prefab);
+            }
 
             // A roof, not a floor, as far as the weather goes: it doesn't wear away when nothing covers it.
             var wearNTear = prefab.GetComponent<WearNTear>();

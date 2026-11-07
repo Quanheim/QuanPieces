@@ -67,8 +67,8 @@ namespace QuanPieces
             Register("lantern street light", LanternStreetlight.Register);
             Register("large planter", Planter.RegisterLarge);
             Register("planter", Planter.RegisterSmall);
-            Register("chicken coop floor", ChickenCoopFloor.RegisterWarm);
-            Register("unheated chicken coop floor", ChickenCoopFloor.RegisterUnheated);
+            Register("chicken coop floor", ChickenCoopFloor.Register);
+            Register("floor heater", FloorHeater.Register);
             Register("chicken coop door", ChickenCoopDoor.Register);
             Register("chicken coop wall", ChickenCoopWall.Register);
         }

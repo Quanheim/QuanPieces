@@ -121,19 +121,23 @@ under the eaves in front of a half wall. Plant straight into them with the culti
 </tr>
 </table>
 
-Pieces for giving your chickens a proper home: a thatched floor (warm, or unheated if you'd rather collect the
-eggs), walls of wooden bars and a gate to match.
+Pieces for giving your chickens a proper home: a thatched floor, a heater to warm it, walls of wooden bars and a
+gate to match.
 
-| | Coop Floor | Coop Wall | Coop Door |
-|---|---|---|---|
-| **Size** | 2x2 | 2x2 | 2x2 |
-| **Cost** | 2 Wood | 2 Wood | 2 Wood |
-| **Crafting station** | Workbench | Workbench | Workbench |
+| | Coop Floor | Floor Heater | Coop Wall | Coop Door |
+|---|---|---|---|---|
+| **Size** | 2x2 | Campfire-sized | 2x2 | 2x2 |
+| **Cost** | 2 Wood | 5 Stone | 2 Wood | 2 Wood |
+| **Crafting station** | Workbench | Workbench | Workbench | Workbench |
 
-- **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. It gives off warmth like
-  a fire, so eggs laid on it hatch. As in vanilla, they also need a roof over them. Standing on it warms you too.
-- **Unheated Floor**: the same floor with no warmth, so eggs laid on it don't hatch and you can collect them.
-  Same size, cost and crafting station as the warm one.
+- **Floor**: a wooden floor with the thatch laid low, so even chicks stand tall on it. While a floor heater
+  that's on is within 10 m, it gives off warmth like a fire, so eggs laid on it hatch. As in vanilla, they also
+  need a roof over them. Without a heater nearby it stays cold, and eggs on it wait to be collected.
+- **Floor Heater**: a ring of hot stones. Use it to turn it on or off: on, the coop floors around it are warm
+  and eggs hatch; off, they go cold, eggs stop hatching (an egg that's already growing starts again from
+  scratch), and you can collect them. It needs no fuel and doesn't mind rain, wind, smoke or open sky, so it can
+  sit under the edge of a raised coop or out in the open beside it. Its hover text shows how many coop floors
+  it's warming.
 - **Wall**: wooden bars that let the light and air in and keep animals in or out. You can see and reach through
   them, so you can pick up eggs from outside the coop.
 - **Door**: a 2x2 gate of wooden bars with an iron latch. It opens and closes like any door.
@@ -259,7 +263,7 @@ so the owning mod's refund rules apply, plus the harvest if ripe.
 </details>
 
 <details>
-<summary><b>Quan's Chicken Coop</b> (<code>Quan_chicken_coop_floor</code>, <code>Quan_chicken_coop_floor_unheated</code>, <code>Quan_chicken_coop_wall</code>, <code>Quan_chicken_coop_door</code>)</summary>
+<summary><b>Quan's Chicken Coop</b> (<code>Quan_chicken_coop_floor</code>, <code>Quan_floor_heater</code>, <code>Quan_chicken_coop_wall</code>, <code>Quan_chicken_coop_door</code>)</summary>
 
 **Floor** (`Pieces/ChickenCoopFloor.cs`): the vanilla 2x2 wood floor (`wood_floor`) with the 26° thatch roof's
 (`wood_roof`) three straw layers laid flat on top. The straw is taken into the roof's own space and unrolled:
@@ -267,8 +271,17 @@ along the slope, the 2.24 m sloped span maps onto the floor's 2 m while the over
 roof's exact length; height above the slope is squashed into a 5 cm layer lying on the planks. The floor's
 collider is raised to halfway up the thatch, so small animals stand on it. A trigger box over the floor on the
 `character_trigger` layer carries an `EffectArea` of type Heat, which is what `EggGrow` checks for (eggs also need
-a roof, checked separately). It costs the same as the thatch roof, read from its recipe. The unheated floor
-(`Quan_chicken_coop_floor_unheated`) is built the same way without the Heat trigger.
+a roof, checked separately). The box starts inactive; `CoopFloorWarmth` checks once a second (staggered per floor)
+for a loaded heater that's on within 10 m of the floor's centre and switches the box to match. Every client works
+this out for itself from the heaters' shared state. It costs the same as the thatch roof, read from its recipe.
+
+**Floor heater** (`Pieces/FloorHeater.cs`, `Pieces/FloorHeaterControl.cs`): a clone of the vanilla campfire
+(`fire_pit`) with its `Fireplace`, `_enabled`, `_enabled_high`, `_enabled_low`, `PlayerBase` and logs removed,
+keeping the ring of stones and the ash bed. The glowing ash (`_enabled_high/Quad (1)`) and the low fire's light
+(`_enabled_low/Point light`) move into an `embers` child shown while it's on. `FloorHeaterControl` is the switch:
+the on/off state is a ZDO bool (`Quan_floor_heater_lit`, on by default), set by the owner through an RPC, and
+wards are respected. Ground-only placement and comfort are cleared. Version 1.3.0's unheated floor
+(`Quan_chicken_coop_floor_unheated`) was removed in 1.4.0.
 
 **Door** (`Pieces/ChickenCoopDoor.cs`): the vanilla Iron Gate (`iron_grate`), 2x3, made 1 m shorter by reshaping
 rather than scaling. The frame's top bar drops 1 m and the uprights shorten. The swinging leaf is split into

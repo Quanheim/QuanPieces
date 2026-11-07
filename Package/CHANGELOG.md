@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.0 - 2026-11-07
+
+- New piece: Quan's Floor Heater (5 Stone, Workbench). While it's on, Quan's Chicken Coop Floors within 10 m are
+  warm and eggs on them hatch; turn it off to collect eggs instead. It needs no fuel and doesn't mind rain or
+  open sky.
+- Quan's Chicken Coop Floor is now warm only while a floor heater that's on is within 10 m. Existing coops need a
+  heater to keep hatching eggs.
+- Removed Quan's Unheated Chicken Coop Floor (added in 1.3.0); the heater does its job. Any that were placed
+  disappear.
+
 ## 1.3.0 - 2026-11-07
 
 - New piece: Quan's Unheated Chicken Coop Floor. The same coop floor without the warmth, so eggs laid on it

@@ -78,6 +78,18 @@ a change in behaviour isn't, so list the ones whose behaviour the mod depends on
 | `Piece.m_placeEffect` | Copied from source pieces. |
 | `Piece.m_groundOnly` | Placement rules copied from source pieces (with the other placement flags beside it). |
 | `Piece.m_clipEverything` | Placement rules copied from source pieces. |
+| `Piece.m_groundPiece` | Cleared on the floor heater so it can go on floors. |
+| `Piece.m_comfort` | Zeroed on the floor heater (a campfire's comfort). |
+| `Fireplace` | Removed from the floor heater's campfire clone. |
+| `EffectArea` | Coop floor warmth: a Heat area, switched on and off by `CoopFloorWarmth`. |
+| `EffectArea.Type` | Heat. |
+| `Interactable` | Floor heater on/off switch. |
+| `Hoverable` | Floor heater hover text. |
+| `PrivateArea.CheckAccess` | A ward stops strangers switching a floor heater. |
+| `ZNetView.Register` | Floor heater on/off RPC. |
+| `ZNetView.InvokeRPC` | Floor heater on/off RPC. |
+| `ZDO.GetBool` | Floor heater on/off state. |
+| `Localization.Localize` | Floor heater hover text (assembly_guiutils). |
 | `WearNTear.MaterialType` | Street lights, flue and coop pieces use wood support. |
 | `WearNTear.m_materialType` | Set to wood. |
 | `Fireplace.m_smokeSpawner` | Street lights' smoke. |
@@ -102,6 +114,9 @@ Things the game does that the mod counts on without calling them, e.g. "only the
 | `Pickable.RPC_Pick` | The planter's harvest refund copies how picking works out its drops; if picking changes, the refund drifts. |
 | `Fireplace` | The street lights are working Fireplaces, which is why NoSmokeStayLit (and QuanDupeLightsources) can time them. |
 | `StaticPhysics` | Grown crops carry it and it's what drops them to the ground. |
+| `EggGrow.CanGrow` | An egg grows only inside a Heat `EffectArea` (and under a roof), and losing heat resets it; that's what the coop floor's switchable warmth and the floor heater rely on. |
+| `EffectArea.IsPointInsideArea` | Finds areas with a physics overlap, so a deactivated warmth object stops counting at once. |
+| `Bed.CheckFire` | Also accepts a Heat area: a bed on a warm coop floor counts as near a fire. |
 
 ## Prefabs and assets
 
@@ -123,6 +138,8 @@ after each update.
 | `iron_grate` | Coop door base (`door`, `New`). | Renamed or children move. |
 | `wood_floor` | Coop floor base. | Renamed. |
 | `wood_roof` | Coop floor straw meshes, material, cost. | Renamed. |
+| `fire_pit` | Floor heater base: stones (`New`, logs are its `Cube` children), glowing ash `_enabled_high/Quad (1)`, light `_enabled_low/Point light`; `_enabled`, `_enabled_high`, `_enabled_low`, `PlayerBase` removed. | Renamed or those children move. |
+| `Stone` | Floor heater cost. | Item renamed. |
 | `iron_wall_2x2` | Coop wall base. | Renamed. |
 | `iron_floor_2x2` | Chimney flue base (`New`). | Renamed. |
 | `stone_floor_2x2` | Chimney flue texture and sounds. | Renamed. |
@@ -132,5 +149,5 @@ after each update.
 | `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |
 | `Custom/Piece` shader | Properties `_RippleDistance`, `_TriplanarMap`, `_TriplanarScale`, `_TriplanarLocalPos`, `_BumpMap`, `_Glossiness`, `_Cutoff`, keywords `_EMISSION`, `_NORMALMAP`. | Shader or property renamed. |
 | Terrain material arrays | `terrain_d_array` and `terrain_n_array` for planter soil. | Renamed. |
-| Layers | `piece`, `piece_nonsolid`, `blocker`, `Default`, `static_solid`, `Default_small`, and the hover list in `Player.m_interactMask`. | Renamed or reassigned. |
+| Layers | `piece`, `piece_nonsolid`, `blocker`, `character_trigger`, `Default`, `static_solid`, `Default_small`, and the hover list in `Player.m_interactMask`. | Renamed or reassigned. |
 | `_CultivatorPieceTable` | Name prefix of the cultivator's piece table. | Renamed. |

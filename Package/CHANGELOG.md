@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.3 - 2026-11-07
+## 1.3.0 - 2026-11-07
 
 - New piece: Quan's Unheated Chicken Coop Floor. The same coop floor without the warmth, so eggs laid on it
   don't hatch and can be collected.

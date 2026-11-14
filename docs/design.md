@@ -7,7 +7,7 @@ built, move its description to the README and remove it from this file.
 ## ▶ Test run: plank walls (1.5.0)
 
 Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
-1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), Quan's Bevelled Shelf Edge, and Quan's Item Stand (wall and floor) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
+1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), Quan's Bevelled Shelf Edge, Quan's Item Stand (V and H) and Quan's Invisible Item Stand (V and H) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
 
 | Test | OK | # | Do | Expect / Result |
 |---|---|---|---|---|
@@ -35,8 +35,9 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall. | **Passed (14 Nov):** covered by 22: both ends bevelled, snapping cleanly, nothing through the wall. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 19 | **Re-import the 1.5.0 zip** (new build). Place a floor stand beside a vanilla one on a table and a 1x1 shelf; attach the same item to both; aim at the bare nub. | No gap: the stand sits on the table, ~1 cm of nub showing when empty; the item rests on the table (not on top of the nub); with an item on either stand the nub disappears completely, and comes back when the item is taken off; hover text appears when aiming at the nub, and at the item once attached. **Bug (14 Nov, first build):** "out" was taken as plate-to-nub, which on the rotated floor stand is sideways: nub, attach point and hover box moved 10 cm along the table, the stand floated 2.5 cm (placement puts the collider on the surface), hover only beside the nub, item on top of the nub. Fixed: out is the plate's face normal; the nub moves under the item. |
+| ⬜ | ⬜ | 19 | **Re-import the 1.5.0 zip** (new build). Place a floor stand beside a vanilla one on a table and a 1x1 shelf; attach the same item to both; aim at the bare nub. | No gap: the stand sits on the table, ~1 cm of nub showing when empty; the item rests on the table (not on top of the nub); the nub stays visible on Quan's Item Stand (H); hover text appears when aiming at the nub, and at the item once attached. **Bug (14 Nov, first build):** "out" was taken as plate-to-nub, which on the rotated floor stand is sideways: nub, attach point and hover box moved 10 cm along the table, the stand floated 2.5 cm (placement puts the collider on the surface), hover only beside the nub, item on top of the nub. Fixed: out is the plate's face normal; the nub moves under the item. |
 | ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
+| ⬜ | ⬜ | 24 | Place a Quan's Invisible Item Stand (V) on a wall and (H) on a table; attach an item to each, then take it off. | Both appear in the hammer as "Quan's Invisible Item Stand (V)" / "(H)". While an item is on, its nub is gone completely; take the item off and the nub comes back. Quan's Item Stand (V)/(H) beside them keep their nub showing either way. |
 
 ## Eating troughs
 

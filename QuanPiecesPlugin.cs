@@ -81,6 +81,8 @@ namespace QuanPieces
             Register("bevelled shelf edge", TriangleFloor.RegisterBevelled);
             Register("wall item stand", NubItemStand.RegisterWall);
             Register("floor item stand", NubItemStand.RegisterFloor);
+            Register("invisible wall item stand", NubItemStand.RegisterInvisibleWall);
+            Register("invisible floor item stand", NubItemStand.RegisterInvisibleFloor);
         }
 
         private static void Register(string piece, System.Action register)

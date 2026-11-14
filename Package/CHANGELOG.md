@@ -10,9 +10,10 @@
   for small gaps or a neat 45° end to a 1x1 shelf. Mirror images of each other.
 - New piece: Quan's Bevelled Shelf Edge, 1 Wood. The same triangle with its planks along the long edge, for a
   bevelled end to a 1x1 shelf.
-- New pieces: Quan's Item Stand, for the wall and for the floor. Vanilla's item stands with only the nub, no
-  backplate or underplate, so the item sits right against the wall or on the floor, and the nub disappears while
-  an item is on it. Same cost as vanilla's.
+- New pieces: Quan's Item Stand (V) and (H), for the wall and for the floor. Vanilla's item stands with only the
+  nub, no backplate or underplate, so the item sits right against the wall or on the floor. Same cost as
+  vanilla's.
+- New pieces: Quan's Invisible Item Stand (V) and (H). The same, but the nub disappears while an item is on it.
 
 ## 1.4.0 - 2026-11-07
 

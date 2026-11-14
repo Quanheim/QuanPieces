@@ -14,34 +14,44 @@ namespace QuanPieces.Pieces
     /// </summary>
     internal static class NubItemStand
     {
-        private const string Name = "Quan's Item Stand";
-
         // The collider is the nub's box, made at least this big across, so the tiny nub is still easy to aim at.
         private const float MinColliderSize = 0.1f;
 
-        public static void RegisterWall() => Register("Quan_itemstand", "itemstand",
-            "The wall item stand without its backplate: just the nub, so the item sits right against the wall.",
-            nubUnderItem: false);
+        private const string WallDescription =
+            "The wall item stand without its backplate: just the nub, so the item sits right against the wall.";
+        private const string FloorDescription =
+            "The floor item stand without its underplate: just the nub, so the item sits right on the floor.";
+        private const string HiddenNote = " The nub disappears while an item is on it.";
 
-        // Vanilla's floor stand attaches the item at the plate's centre, 5 cm to one side of its nub; with no plate
-        // the nub would show beside the item, so it moves under the item.
-        public static void RegisterFloor() => Register("Quan_itemstandh", "itemstandh",
-            "The floor item stand without its underplate: just the nub, so the item sits right on the floor.",
-            nubUnderItem: true);
+        // V (vertical) is the wall stand, H (horizontal) the floor stand. Vanilla's floor stand attaches the item at
+        // the plate's centre, 5 cm to one side of its nub; with no plate the nub would show beside the item, so on
+        // the floor stands it moves under the item.
+        public static void RegisterWall() => Register("Quan_itemstand", "itemstand", "Quan's Item Stand (V)",
+            WallDescription, nubUnderItem: false, hideNub: false);
 
-        private static void Register(string prefabName, string basePrefabName, string description, bool nubUnderItem)
+        public static void RegisterFloor() => Register("Quan_itemstandh", "itemstandh", "Quan's Item Stand (H)",
+            FloorDescription, nubUnderItem: true, hideNub: false);
+
+        public static void RegisterInvisibleWall() => Register("Quan_itemstand_invisible", "itemstand",
+            "Quan's Invisible Item Stand (V)", WallDescription + HiddenNote, nubUnderItem: false, hideNub: true);
+
+        public static void RegisterInvisibleFloor() => Register("Quan_itemstandh_invisible", "itemstandh",
+            "Quan's Invisible Item Stand (H)", FloorDescription + HiddenNote, nubUnderItem: true, hideNub: true);
+
+        private static void Register(string prefabName, string basePrefabName, string name, string description,
+                                     bool nubUnderItem, bool hideNub)
         {
             var basePrefab = PrefabManager.Instance.GetPrefab(basePrefabName);
             var basePiece = basePrefab ? basePrefab.GetComponent<Piece>() : null;
             if (basePiece == null)
             {
-                QuanPiecesPlugin.Log.LogWarning($"'{basePrefabName}' not found; {Name} ({basePrefabName}) skipped.");
+                QuanPiecesPlugin.Log.LogWarning($"'{basePrefabName}' not found; {name} skipped.");
                 return;
             }
 
             var config = new PieceConfig
             {
-                Name = Name,
+                Name = name,
                 Description = description,
                 PieceTable = PieceTables.Hammer,
                 Category = QuanPiecesPlugin.HammerCategory,
@@ -53,7 +63,7 @@ namespace QuanPieces.Pieces
             };
 
             var customPiece = new CustomPiece(prefabName, basePrefabName, config);
-            if (!Build(customPiece.PiecePrefab, basePrefabName, nubUnderItem))
+            if (!Build(customPiece.PiecePrefab, name, nubUnderItem, hideNub))
             {
                 return;
             }
@@ -65,20 +75,20 @@ namespace QuanPieces.Pieces
             }
             else
             {
-                QuanPiecesPlugin.Log.LogWarning($"{Name} ({basePrefabName}): icon render failed; using the vanilla icon.");
+                QuanPiecesPlugin.Log.LogWarning($"{name}: icon render failed; using the vanilla icon.");
             }
 
             PieceManager.Instance.AddPiece(customPiece);
         }
 
-        private static bool Build(GameObject prefab, string baseName, bool nubUnderItem)
+        private static bool Build(GameObject prefab, string name, bool nubUnderItem, bool hideNub)
         {
             var root = prefab.transform;
             var stand = prefab.GetComponent<ItemStand>();
             var box = root.Find("collider")?.GetComponent<BoxCollider>();
             if (stand == null || stand.m_attachOther == null || box == null)
             {
-                QuanPiecesPlugin.Log.LogWarning($"{Name} ({baseName}): no ItemStand, attach point or 'collider' box; skipped.");
+                QuanPiecesPlugin.Log.LogWarning($"{name}: no ItemStand, attach point or 'collider' box; skipped.");
                 return false;
             }
 
@@ -89,7 +99,7 @@ namespace QuanPieces.Pieces
                 .ToList();
             if (looks.Count == 0)
             {
-                QuanPiecesPlugin.Log.LogWarning($"{Name} ({baseName}): no plate-and-nub looks found (game update?); skipped.");
+                QuanPiecesPlugin.Log.LogWarning($"{name}: no plate-and-nub looks found (game update?); skipped.");
                 return false;
             }
 
@@ -152,8 +162,11 @@ namespace QuanPieces.Pieces
             box.center = centre;
             box.size = size;
 
-            // Hide the nub while something hangs on it.
-            prefab.AddComponent<NubHider>();
+            // The invisible stands hide the nub while something hangs on it.
+            if (hideNub)
+            {
+                prefab.AddComponent<NubHider>();
+            }
             return true;
         }
 
@@ -180,7 +193,7 @@ namespace QuanPieces.Pieces
     }
 
     /// <summary>
-    /// Hides a Quan's Item Stand's nub while an item is attached, and shows it again when the item comes off. Reads
+    /// Hides a Quan's Invisible Item Stand's nub while an item is attached, and shows it again when the item comes off. Reads
     /// <see cref="ItemStand.HaveAttachment"/> (the stand's network data, so every player sees the same) each frame;
     /// only renderers change, so the hover box and everything else stay as they are.
     /// </summary>

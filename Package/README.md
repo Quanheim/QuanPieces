@@ -213,16 +213,19 @@ These are the two vanilla item stands, on the wall and on the floor, with only t
 underplate. The item sits right on the table, the shelf or the floor, or hangs right against the wall, and hides
 the nub completely, so your displays look placed, not mounted.
 
-| | Cost | Crafting station |
-|---|---|---|
-| **Item Stand (wall)** | 4 Finewood, 1 Bronze Nails | Workbench |
-| **Item Stand (floor)** | 4 Finewood, 1 Bronze Nails | Workbench |
+| | Where | Nub | Cost | Crafting station |
+|---|---|---|---|---|
+| **Item Stand (V)** | wall | always shows | 4 Finewood, 1 Bronze Nails | Workbench |
+| **Item Stand (H)** | floor, table or shelf | always shows | 4 Finewood, 1 Bronze Nails | Workbench |
+| **Invisible Item Stand (V)** | wall | hidden while an item is on it | 4 Finewood, 1 Bronze Nails | Workbench |
+| **Invisible Item Stand (H)** | floor, table or shelf | hidden while an item is on it | 4 Finewood, 1 Bronze Nails | Workbench |
 
 - They work exactly like vanilla's: use one to attach an item or trophy, use it again to take it off, and they
   accept the same items. They cost the same as vanilla's.
-- Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
+- V (vertical) goes on a wall, H (horizontal) on a floor, table or shelf.
+- The **invisible** stands go one better: with an item on, the nub disappears altogether, and it comes back when
+  you take the item off (aim at the item to take it).
 - The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
-- With an item on it, the nub disappears altogether; it comes back when you take the item off.
 
 ### Bevelled shelf edge
 

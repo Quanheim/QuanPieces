@@ -205,6 +205,8 @@ Small pieces for finishing touches: backless item stands and a bevelled shelf ed
 
 ### Backless item stands
 
+<p><img src="docs/images/itemstands-normal-invisible.png" alt="Two swords hung on a plank wall: on the left from a Quan's Item Stand, its small nub showing behind the blade; on the right from a Quan's Invisible Item Stand, with no nub visible at all" width="400"></p>
+
 **Decorators, this one's for you.** Every vanilla item stand comes with a chunky wooden plate. Behind a shield
 or a trophy you barely notice it, but put a knife, a cup or a bottle on a table or a shelf and there's an
 unsightly box sitting under it, every time. Not any more.

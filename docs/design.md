@@ -11,8 +11,10 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 
 | Test | OK | # | Do | Expect / Result |
 |---|---|---|---|---|
+| | | | **Done** | |
+| ✅ | ✅ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | **Passed (14 Nov):** QuanPieces 1.5.0 loaded; no "Couldn't add" or "skipped" lines, no errors; Jotunn added 18 pieces (9 existing + 9 new). |
+| | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | Log has no "Couldn't add" or "skipped" lines for any wood wall. |
 | ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. Two triangular floors, 1 Wood each. Two Quan's Item Stands, at vanilla's cost. |
 | ⬜ | ⬜ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | Same planks and colour; no beams on Quan's, from either side. |
 | ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |

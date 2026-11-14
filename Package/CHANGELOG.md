@@ -11,7 +11,8 @@
 - New piece: Quan's Bevelled Shelf Edge, 1 Wood. The same triangle with its planks along the long edge, for a
   bevelled end to a 1x1 shelf.
 - New pieces: Quan's Item Stand, for the wall and for the floor. Vanilla's item stands with only the nub, no
-  backplate or underplate, so the item sits right against the wall or on the floor. Same cost as vanilla's.
+  backplate or underplate, so the item sits right against the wall or on the floor, and the nub disappears while
+  an item is on it. Same cost as vanilla's.
 
 ## 1.4.0 - 2026-11-07
 

@@ -222,6 +222,7 @@ the nub completely, so your displays look placed, not mounted.
   accept the same items. They cost the same as vanilla's.
 - Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
 - The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
+- With an item on it, the nub disappears altogether; it comes back when you take the item off.
 
 ### Bevelled shelf edge
 

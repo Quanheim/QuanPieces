@@ -151,6 +151,9 @@ namespace QuanPieces.Pieces
             boxObject.transform.localScale = Vector3.one;
             box.center = centre;
             box.size = size;
+
+            // Hide the nub while something hangs on it.
+            prefab.AddComponent<NubHider>();
             return true;
         }
 
@@ -174,5 +177,46 @@ namespace QuanPieces.Pieces
         /// <summary>How far the bounds reach from the origin along the unit axis <paramref name="outward"/>.</summary>
         private static float Far(Bounds b, Vector3 outward) =>
             Vector3.Dot(outward, outward.x + outward.y + outward.z > 0f ? b.max : b.min);
+    }
+
+    /// <summary>
+    /// Hides a Quan's Item Stand's nub while an item is attached, and shows it again when the item comes off. Reads
+    /// <see cref="ItemStand.HaveAttachment"/> (the stand's network data, so every player sees the same) each frame;
+    /// only renderers change, so the hover box and everything else stay as they are.
+    /// </summary>
+    internal sealed class NubHider : MonoBehaviour
+    {
+        private ItemStand m_stand;
+        private Renderer[] m_nubs;
+        private int m_shown = -1; // -1 unknown, 0 hidden, 1 shown
+
+        private void Awake()
+        {
+            m_stand = GetComponent<ItemStand>();
+            // Before anything is attached, the stand's only renderers are its nubs (one per look); attached items
+            // are added later under the attach point and aren't in this list.
+            m_nubs = GetComponentsInChildren<Renderer>(true);
+        }
+
+        private void Update()
+        {
+            if (m_stand == null)
+            {
+                return;
+            }
+            var show = m_stand.HaveAttachment() ? 0 : 1;
+            if (show == m_shown)
+            {
+                return;
+            }
+            m_shown = show;
+            foreach (var nub in m_nubs)
+            {
+                if (nub != null)
+                {
+                    nub.enabled = show == 1;
+                }
+            }
+        }
     }
 }

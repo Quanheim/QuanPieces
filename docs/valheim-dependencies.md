@@ -102,6 +102,7 @@ a change in behaviour isn't, so list the ones whose behaviour the mod depends on
 | `ObjectDB.instance` | Seed refund. |
 | `ItemStand.m_attachOther` | Quan's Item Stands move it back with the nub. |
 | `ItemStand.m_dropSpawnPoint` | Moved back with the nub. |
+| `ItemStand.HaveAttachment` | Hides the nub while an item is attached (`NubHider`). |
 
 ### Behaviour the mod assumes
 

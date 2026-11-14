@@ -148,53 +148,44 @@ gate to match.
 </details>
 
 <details>
-<summary><b>Quan's Plank Walls</b></summary>
+<summary><b>Quan's Building Pieces</b></summary>
 
-The vanilla wood walls with nothing but their vertical planks: no horizontal beams across the back. The same
-look, the same wear states as they take damage, the same support and snapping, plus two taller walls.
+Plain wooden pieces that fill the gaps in vanilla's building set: walls with no beams across the back, taller
+walls, and a small triangular floor.
 
-| | Wood Wall | Wood Wall Half | Wood Wall 1x1 | Wood Wall 2x3 | Wood Wall 1x3 |
-|---|---|---|---|---|---|
-| **Size** | 2x2 | 2x1 | 1x1 | 2 m wide, 3 m tall | 1 m wide, 3 m tall |
-| **Cost** | 2 Wood | 1 Wood | 1 Wood | 3 Wood | 2 Wood |
-| **Crafting station** | Workbench | Workbench | Workbench | Workbench | Workbench |
+| | Size | Cost | Crafting station |
+|---|---|---|---|
+| **Wood Wall** | 2x2 | 2 Wood | Workbench |
+| **Wood Wall Half** | 2x1 | 1 Wood | Workbench |
+| **Wood Wall 1x1** | 1x1 | 1 Wood | Workbench |
+| **Wood Wall 2x3** | 2 m wide, 3 m tall | 3 Wood | Workbench |
+| **Wood Wall 1x3** | 1 m wide, 3 m tall | 2 Wood | Workbench |
+| **Triangular Wood Floor 1x1 (1) and (2)** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
 
-- The 2x2, half and 1x1 walls are vanilla's, minus the beams, so they sit happily beside vanilla walls.
-- The 3 m walls' planks are longer, not stretched: the wood grain carries on up the extra height at the same
-  scale as the 2x2 wall's, so a 2x3 next to a 2x2 matches.
-
-</details>
-
-<details>
-<summary><b>Quan's Triangular Wood Floors 1x1</b></summary>
-
-A 1x1 wood floor cut in half corner to corner. Use it to fill small triangular gaps, or to finish the end of a 1x1
-shelf: snap it to the shelf's end and it meets the wall behind at a clean 45°, without the corner poking out
-through the back of a thin wooden wall.
-
-| | Triangular Wood Floor 1x1 (1) | Triangular Wood Floor 1x1 (2) |
-|---|---|---|
-| **Size** | half a 1x1 | half a 1x1 |
-| **Cost** | 1 Wood | 1 Wood |
-| **Crafting station** | Workbench | Workbench |
-
-- (1) and (2) are mirror images: the planks run along one short side or the other, so you can match the floor or
-  shelf beside it.
-- It snaps at its three corners, and needs the same support as any wooden floor.
+- **Beamless walls:** the vanilla wood walls with nothing but their vertical planks, no horizontal beams across
+  the back. Otherwise vanilla's: the same look, wear as they take damage, support and snapping, so they sit happily
+  beside vanilla walls.
+- **3 m walls:** beamless too. Their planks are longer, not stretched: the wood grain carries on up the extra
+  height at the same scale as the 2x2 wall's, so a 2x3 next to a 2x2 matches.
+- **Triangular floors:** fill small triangular gaps, or finish the end of a 1x1 shelf. Snap one to the shelf's end
+  and it meets the wall behind at a clean 45°, without a corner poking out through the back of a thin wooden wall.
+  The missing half is empty space: you walk straight through it. (1) and (2) are mirror images, with the planks
+  along one short side or the other, so you can match the floor or shelf beside it. They snap at their three
+  corners.
 
 </details>
 
 <details>
-<summary><b>Quan's Item Stands</b></summary>
+<summary><b>Quan's Backless Item Stands</b></summary>
 
 The two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
 underplate. The item hangs right against the wall or sits right on the floor, and hides the nub, so displays can
 be placed precisely without a plate showing.
 
-| | Item Stand (wall) | Item Stand (floor) |
+| | Cost | Crafting station |
 |---|---|---|
-| **Cost** | as vanilla's | as vanilla's |
-| **Crafting station** | as vanilla's | as vanilla's |
+| **Item Stand (wall)** | as vanilla's | as vanilla's |
+| **Item Stand (floor)** | as vanilla's | as vanilla's |
 
 - They work exactly like vanilla's: use one to attach an item or trophy, use it again to take it off, and they
   accept the same items.

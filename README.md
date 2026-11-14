@@ -225,6 +225,8 @@ the nub completely, so your displays look placed, not mounted.
 
 ### Bevelled shelf edge
 
+<p><img src="docs/images/bevelled-shelf-edge.png" alt="A 1x1 floor shelf on a plank wall, finished at both ends with Quan's Bevelled Shelf Edges: the planks turn the corner at 45° into the wall, their seams meeting the shelf's" width="640"></p>
+
 Half a 1x1 wood floor, cut corner to corner, with its planks running along the long edge. Snap it to the end of a
 1x1 shelf and the shelf finishes in a neat bevelled corner into the wall, with the long edge a plank's own rounded
 edge, and nothing poking out through the back of a thin wall. It's the same both ways round, so one piece does

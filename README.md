@@ -201,9 +201,13 @@ walls, and a small triangular floor.
 </tr>
 </table>
 
-The two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
-underplate. The item hangs right against the wall or sits right on the floor, and hides the nub, so displays can
-be placed precisely without a plate showing.
+**Decorators, this one's for you.** Every vanilla item stand comes with a chunky wooden plate. Behind a shield
+or a trophy you barely notice it, but put a knife, a cup or a bottle on a table or a shelf and there's an
+unsightly box sitting under it, every time. Not any more.
+
+These are the two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
+underplate. The item sits right on the table, the shelf or the floor, or hangs right against the wall, and hides
+the nub completely, so your displays look placed, not mounted.
 
 | | Cost | Crafting station |
 |---|---|---|

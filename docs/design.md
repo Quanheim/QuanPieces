@@ -18,11 +18,11 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | **Passed (14 Nov):** planks and colour match from the front; from behind only the vanilla twin of each pair shows a beam. |
 | ✅ | ✅ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | **Passed (14 Nov):** 3 m tall; no beams front or back; grain runs the full height at the walls' scale, no stretch, seam or repeat. |
 | ✅ | ✅ | 6 | Place a 1x3 beside the 2x3. | **Passed (14 Nov):** same height and grain scale as the 2x3. |
+| ✅ | ✅ | 7 | Snap the 3 m walls: to a floor's edge, side by side, and one wall on top of another. | **Passed (14 Nov):** no gaps at floor level or stacked. |
+| ✅ | ✅ | 8 | Hit one of each wall until it's worn, then until it's broken. | **Passed (14 Nov):** worn and broken looks have no beams; the 2x3's broken look is 3 m of askew planks. The 1x3 shows no separate broken look: vanilla's 1x1 wall uses its New mesh for all three states (worn colour), so neither has one. A proper broken 1x3 offered, cosmetic. |
 | ✅ | ✅ | 12 | **Re-import the fixed 1.5.0 zip first.** Remove one of each wall with the hammer (the stuck wall from test 3 too). | **Passed (14 Nov), fixed build:** every wall, the stuck one included, deconstructs cleanly. **Bug found in test 3:** removing gave the wood back but the wall stayed (infinite wood); `high` had been deleted but is the wall's fragment roots. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 7 | Snap the 3 m walls: to a floor's edge, side by side, and one wall on top of another. | They snap at floor level and at 3 m; no gaps or overlaps. |
-| ⬜ | ⬜ | 8 | Hit one of each wall until it's worn, then until it's broken (or damage with devcommands). | Worn and broken looks have no beams; on the 3 m walls they're 3 m tall. |
 | ⬜ | ⬜ | 9 | Walk away from a 2x3 and 1x3 until they switch to their distant look. | The distant slab is the full 3 m, not 2 m or 1 m. |
 | ⬜ | ⬜ | 10 | Turn on the hammer's support view on a wall of stacked 3 m walls. | Support colours as for vanilla wood walls; the walls don't fall. |
 | ⬜ | ⬜ | 11 | Walk into the top metre of a 3 m wall; aim the hammer at its top. | You can't walk through it; the hammer targets it all the way up. |

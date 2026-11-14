@@ -167,7 +167,7 @@ gate to match.
 </table>
 
 Plain wooden pieces that fill the gaps in vanilla's building set: walls with no beams across the back, taller
-walls, and small triangular floors for gaps and shelf ends.
+walls, and a small triangular floor.
 
 | | Size | Cost | Crafting station |
 |---|---|---|---|
@@ -177,7 +177,6 @@ walls, and small triangular floors for gaps and shelf ends.
 | **Wood Wall 2x3** | 2 m wide, 3 m tall | 3 Wood | Workbench |
 | **Wood Wall 1x3** | 1 m wide, 3 m tall | 2 Wood | Workbench |
 | **Triangular Wood Floor 1x1 (1) and (2)** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
-| **Bevelled Shelf Edge** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
 
 - **Beamless walls:** the vanilla wood walls with nothing but their vertical planks, no horizontal beams across
   the back. Otherwise vanilla's: the same look, wear as they take damage, support and snapping, so they sit happily
@@ -189,14 +188,11 @@ walls, and small triangular floors for gaps and shelf ends.
   The missing half is empty space: you walk straight through it. (1) and (2) are mirror images, with the planks
   along one short side or the other, so you can match the floor or shelf beside it. They snap at their three
   corners.
-- **Bevelled Shelf Edge:** the same triangle with its planks running along the long edge, so that edge is a
-  plank's own rounded edge: snap it to the end of a 1x1 shelf for a neat bevelled corner into the wall. It's the
-  same both ways round, so one piece does both ends.
 
 </details>
 
 <details>
-<summary><b>Quan's Backless Item Stands</b></summary>
+<summary><b>Quan's Decorative Pieces</b></summary>
 
 <table>
 <tr>
@@ -204,6 +200,10 @@ walls, and small triangular floors for gaps and shelf ends.
 <td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-floor-card.png" alt="Build-menu card: Quan's Item Stand for the floor, 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
 </tr>
 </table>
+
+Small pieces for finishing touches: backless item stands and a bevelled shelf edge.
+
+### Backless item stands
 
 **Decorators, this one's for you.** Every vanilla item stand comes with a chunky wooden plate. Behind a shield
 or a trophy you barely notice it, but put a knife, a cup or a bottle on a table or a shelf and there's an
@@ -222,5 +222,16 @@ the nub completely, so your displays look placed, not mounted.
   accept the same items. They cost the same as vanilla's.
 - Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
 - The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
+
+### Bevelled shelf edge
+
+Half a 1x1 wood floor, cut corner to corner, with its planks running along the long edge. Snap it to the end of a
+1x1 shelf and the shelf finishes in a neat bevelled corner into the wall, with the long edge a plank's own rounded
+edge, and nothing poking out through the back of a thin wall. It's the same both ways round, so one piece does
+both ends of a shelf.
+
+| | Size | Cost | Crafting station |
+|---|---|---|---|
+| **Bevelled Shelf Edge** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
 
 </details>

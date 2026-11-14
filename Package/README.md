@@ -196,8 +196,12 @@ walls, and a small triangular floor.
 
 <table>
 <tr>
-<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-wall-card.png" alt="Build-menu card: Quan's Item Stand for the wall, 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
-<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-floor-card.png" alt="Build-menu card: Quan's Item Stand for the floor, 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-wall-card.png" alt="Build-menu card: Quan's Item Stand (V), 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-floor-card.png" alt="Build-menu card: Quan's Item Stand (H), 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-wall-invisible-card.png" alt="Build-menu card: Quan's Invisible Item Stand (V), 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-floor-invisible-card.png" alt="Build-menu card: Quan's Invisible Item Stand (H), 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
 </tr>
 </table>
 
@@ -232,6 +236,8 @@ the nub completely, so your displays look placed, not mounted.
 ### Bevelled shelf edge
 
 <p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/bevelled-shelf-edge.png" alt="A 1x1 floor shelf on a plank wall, finished at both ends with Quan's Bevelled Shelf Edges: the planks turn the corner at 45° into the wall, their seams meeting the shelf's" width="640"></p>
+
+<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/bevelled-shelf-edge-card.png" alt="Build-menu card: Quan's Bevelled Shelf Edge, 1 Wood at a Workbench" width="320"></p>
 
 Half a 1x1 wood floor, cut corner to corner, with its planks running along the long edge. Snap it to the end of a
 1x1 shelf and the shelf finishes in a neat bevelled corner into the wall, with the long edge a plank's own rounded

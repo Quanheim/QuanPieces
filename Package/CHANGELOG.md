@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.5.0 - unreleased
+## 1.5.0 - 2026-11-14
 
 - New pieces: Quan's Wood Wall, Quan's Wood Wall Half and Quan's Wood Wall 1x1. The vanilla wood walls with only
   their vertical planks, no beams across the back, at vanilla's cost.

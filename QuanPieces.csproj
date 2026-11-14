@@ -8,7 +8,7 @@
     <Version>1.5.0</Version>
 
     <!-- Thunderstore manifest description: max 250 characters, no double quotes. -->
-    <ThunderstoreDescription>Adds new building pieces to Valheim that fill the gaps in the vanilla build menu, all in their own QuanPieces hammer tab.</ThunderstoreDescription>
+    <ThunderstoreDescription>New building pieces in their own QuanPieces hammer tab: beamless and 3 m plank walls, triangular floors, a bevelled shelf edge, backless and invisible item stands, a chimney flue, street lights, planters and a chicken coop.</ThunderstoreDescription>
     <!-- Becomes website_url in manifest.json: the Thunderstore page's link to the repo (and its Issues).
          Leave empty to use this repo's git remote automatically; set it only to point somewhere else. -->
     <RepoUrl></RepoUrl>

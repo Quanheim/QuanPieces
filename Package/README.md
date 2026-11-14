@@ -150,6 +150,22 @@ gate to match.
 <details>
 <summary><b>Quan's Building Pieces</b></summary>
 
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-card.png" alt="Build-menu card: Quan's Wood Wall, 2 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-half-card.png" alt="Build-menu card: Quan's Wood Wall Half, 1 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-1x1-card.png" alt="Build-menu card: Quan's Wood Wall 1x1, 1 Wood at a Workbench" width="240"></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-2x3-card.png" alt="Build-menu card: Quan's Wood Wall 2x3, 3 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-1x3-card.png" alt="Build-menu card: Quan's Wood Wall 1x3, 2 Wood at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/triangular-floor-1-card.png" alt="Build-menu card: Quan's Triangular Wood Floor 1x1 (1), 1 Wood at a Workbench" width="240"></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/triangular-floor-2-card.png" alt="Build-menu card: Quan's Triangular Wood Floor 1x1 (2), 1 Wood at a Workbench" width="240"></td>
+</tr>
+</table>
+
 Plain wooden pieces that fill the gaps in vanilla's building set: walls with no beams across the back, taller
 walls, and a small triangular floor.
 
@@ -178,17 +194,24 @@ walls, and a small triangular floor.
 <details>
 <summary><b>Quan's Backless Item Stands</b></summary>
 
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-wall-card.png" alt="Build-menu card: Quan's Item Stand for the wall, 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+<td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/itemstand-floor-card.png" alt="Build-menu card: Quan's Item Stand for the floor, 4 Finewood and 1 Bronze Nails at a Workbench" width="240"></td>
+</tr>
+</table>
+
 The two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
 underplate. The item hangs right against the wall or sits right on the floor, and hides the nub, so displays can
 be placed precisely without a plate showing.
 
 | | Cost | Crafting station |
 |---|---|---|
-| **Item Stand (wall)** | as vanilla's | as vanilla's |
-| **Item Stand (floor)** | as vanilla's | as vanilla's |
+| **Item Stand (wall)** | 4 Finewood, 1 Bronze Nails | Workbench |
+| **Item Stand (floor)** | 4 Finewood, 1 Bronze Nails | Workbench |
 
 - They work exactly like vanilla's: use one to attach an item or trophy, use it again to take it off, and they
-  accept the same items.
+  accept the same items. They cost the same as vanilla's.
 - Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
 - The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
 

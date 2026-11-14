@@ -78,6 +78,7 @@ namespace QuanPieces
             Register("wood wall 1x3", PlankWall.Register1x3);
             Register("triangular wood floor 1x1 (1)", TriangleFloor.Register1);
             Register("triangular wood floor 1x1 (2)", TriangleFloor.Register2);
+            Register("bevelled shelf edge", TriangleFloor.RegisterBevelled);
             Register("wall item stand", NubItemStand.RegisterWall);
             Register("floor item stand", NubItemStand.RegisterFloor);
         }

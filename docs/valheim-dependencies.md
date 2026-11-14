@@ -153,7 +153,7 @@ after each update.
 | `itemstand` | Base of Quan's Item Stand (wall). Looks `New` and `WornBroken`, each a plate box and a smaller nub box; `collider` box; `attach_other`, `dropspawn`; root `LODGroup`. | Renamed, or the plate and nub stop being two boxes per look (the piece logs and skips). |
 | `itemstandh` | Base of Quan's Item Stand (floor). Same layout. | As `itemstand`. |
 | `wood_door` | Coop wood support, hit/break/place effects, door sounds. | Renamed. |
-| `wood_floor_1x1` | Planter and floor heater base: piece setup, plank mesh, woodpole material. Base of the triangular floors: meshes under `New`, `Worn`, `Broken` (cut), `collider` (its box gives the wedge's thickness), corner snap points, `floor_1x1_snow`; cost and station. | Renamed, or `collider` stops being a box. |
+| `wood_floor_1x1` | Planter and floor heater base: piece setup, plank mesh, woodpole material. Base of the triangular floors and the bevelled shelf edge: meshes under `New`, `Worn`, `Broken` (cut), `collider` (its box gives the wedge's thickness), corner snap points, `floor_1x1_snow`; cost and station. | Renamed, or `collider` stops being a box. |
 | `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |
 | `Custom/Piece` shader | Properties `_RippleDistance`, `_TriplanarMap`, `_TriplanarScale`, `_TriplanarLocalPos`, `_BumpMap`, `_Glossiness`, `_Cutoff`, keywords `_EMISSION`, `_NORMALMAP`. | Shader or property renamed. |
 | Terrain material arrays | `terrain_d_array` and `terrain_n_array` for planter soil. | Renamed. |

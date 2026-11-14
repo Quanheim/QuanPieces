@@ -7,7 +7,7 @@ built, move its description to the README and remove it from this file.
 ## ▶ Test run: plank walls (1.5.0)
 
 Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
-1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), and Quan's Item Stand (wall and floor) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
+1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), Quan's Bevelled Shelf Edge, and Quan's Item Stand (wall and floor) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
 
 | Test | OK | # | Do | Expect / Result |
 |---|---|---|---|---|
@@ -26,15 +26,17 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 12 | **Re-import the fixed 1.5.0 zip first.** Remove one of each wall with the hammer (the stuck wall from test 3 too). | **Passed (14 Nov), fixed build:** every wall, the stuck one included, deconstructs cleanly. **Bug found in test 3:** removing gave the wood back but the wall stayed (infinite wood); `high` had been deleted but is the wall's fragment roots. |
 | ✅ | ✅ | 13 | Place each triangular floor; look at the cut edge from the side and above. | **Passed (14 Nov):** the diagonal cut is closed and textured as wood, no gaps; (1) and (2) side by side are mirror images and meet cleanly. |
 | ✅ | ✅ | 15 | Walk onto a triangle and along its long edge; walk through the missing half. | **Passed (14 Nov):** you slide smoothly along the 45° edge; the missing half doesn't catch you (a vanilla 1x1 floor beside it catches on its corner, as expected). Item drop not separately shown. |
+| ✅ | ✅ | 14 | **Shelf test:** 1x1 floor shelf halfway up a Quan's Wood Wall, triangles snapped to its ends. | **Passed (14 Nov):** they snap to the shelf's corners and stack; the 45° edge meets the wall and nothing pokes out of the wall's back. Led to the Bevelled Shelf Edge (planks along the long edge, like the old rotated-floor look). |
+| ✅ | ✅ | 16 | Damage a triangle to worn and broken; distant look; remove it. | **Dropped (14 Nov):** not needed (Quandru). Removal already seen to work. |
+| ✅ | ✅ | 21 | Damage a stand until it looks worn; remove both. | **Dropped (14 Nov):** not needed (Quandru). Removal already seen to work. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 14 | **Shelf test:** make a 1x1 floor shelf halfway up a Quan's Wood Wall (your usual way), then snap a triangle to the shelf's end with its long edge to the wall. | It snaps at the shelf's corners; the 45° edge meets the wall, and nothing pokes out of the wall's back. |
-| ⬜ | ⬜ | 16 | Damage a triangle to worn and broken; walk away until it switches to its distant look; remove it. | Worn, broken and distant looks are triangles too; 1 Wood back. Removal already checked 14 Nov: deconstructs cleanly. |
 | ⬜ | ⬜ | 17 | Place a Quan's Item Stand on a wall beside a vanilla one; look from the side. | Only the nub shows, flush on the wall; no backplate. |
 | ⬜ | ⬜ | 18 | Attach the same items to both: a weapon, a shield and a trophy. Look from the side. | Each item sits in the same pose as on vanilla's, 5 cm nearer the wall, and hides the nub; nothing sinks into the wall. |
 | ⬜ | ⬜ | 19 | Same with the floor stand beside a vanilla floor stand, on a floor and on a 1x1 shelf. | Only the nub shows, on the surface; items sit 2.5 cm lower than on vanilla's, resting on or just above the surface, not sunk into it. |
 | ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
-| ⬜ | ⬜ | 21 | Damage a stand until it looks worn; remove both with the hammer. | Worn look is a nub alone too; vanilla's cost back. Removal already checked 14 Nov: deconstructs cleanly. |
+| ⬜ | ⬜ | 22 | **Re-import the 1.5.0 zip** (new build). Place a Quan's Bevelled Shelf Edge on the ground; look from above and at the long edge. | One triangle (1 Wood) with its planks running along the long edge; the long edge is a plank's rounded edge; the two short cut sides are closed (no gaps); the grain isn't stretched. |
+| ⬜ | ⬜ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall, turning it for the second end. | Both ends get the bevelled look (like your old rotated floors, with no corner gap); nothing pokes out of the wall's back. |
 
 ## Eating troughs
 

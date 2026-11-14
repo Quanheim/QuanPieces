@@ -167,7 +167,7 @@ gate to match.
 </table>
 
 Plain wooden pieces that fill the gaps in vanilla's building set: walls with no beams across the back, taller
-walls, and a small triangular floor.
+walls, and small triangular floors for gaps and shelf ends.
 
 | | Size | Cost | Crafting station |
 |---|---|---|---|
@@ -177,6 +177,7 @@ walls, and a small triangular floor.
 | **Wood Wall 2x3** | 2 m wide, 3 m tall | 3 Wood | Workbench |
 | **Wood Wall 1x3** | 1 m wide, 3 m tall | 2 Wood | Workbench |
 | **Triangular Wood Floor 1x1 (1) and (2)** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
+| **Bevelled Shelf Edge** | half a 1x1, cut corner to corner | 1 Wood | Workbench |
 
 - **Beamless walls:** the vanilla wood walls with nothing but their vertical planks, no horizontal beams across
   the back. Otherwise vanilla's: the same look, wear as they take damage, support and snapping, so they sit happily
@@ -188,6 +189,9 @@ walls, and a small triangular floor.
   The missing half is empty space: you walk straight through it. (1) and (2) are mirror images, with the planks
   along one short side or the other, so you can match the floor or shelf beside it. They snap at their three
   corners.
+- **Bevelled Shelf Edge:** the same triangle with its planks running along the long edge, so that edge is a
+  plank's own rounded edge: snap it to the end of a 1x1 shelf for a neat bevelled corner into the wall. It's the
+  same both ways round, so one piece does both ends.
 
 </details>
 
@@ -403,7 +407,7 @@ the beams taken out of their meshes. No patches.
 </details>
 
 <details>
-<summary><b>Quan's Triangular Wood Floors 1x1</b> (<code>Quan_wood_floor_triangle_1x1_1</code>, <code>Quan_wood_floor_triangle_1x1_2</code>)</summary>
+<summary><b>Quan's Triangular Wood Floors 1x1</b> (<code>Quan_wood_floor_triangle_1x1_1</code>, <code>Quan_wood_floor_triangle_1x1_2</code>, <code>Quan_bevelled_shelf_edge</code>)</summary>
 
 `Pieces/TriangleFloor.cs`. Clones of the vanilla 1x1 wood floor (`wood_floor_1x1`, two planks running along z),
 cut on a diagonal plane through its centre. No patches.
@@ -415,6 +419,9 @@ cut on a diagonal plane through its centre. No patches.
   along z, that makes them mirror images, which no rotation can swap.
 - The square box collider (`collider`) becomes a convex `MeshCollider` wedge of the same thickness. The snap point
   on the cut-off corner and the square snow cover (`floor_1x1_snow`) are removed.
+- The Bevelled Shelf Edge (`Quan_bevelled_shelf_edge`) is (1)'s triangle with the planks along the long edge: the
+  planks are lengthened along their grain with `MeshData.ExtendY` (via a z-to-y turn, so the texture extends rather
+  than stretches), turned 45° with the outermost plank's edge on the long edge, then cut along the two short sides.
 
 </details>
 

@@ -21,11 +21,24 @@ namespace QuanPieces.Pieces
         public static void Register1() => Register("Quan_wood_floor_triangle_1x1_1", "Quan's Triangular Wood Floor 1x1 (1)", new Vector3(1f, 0f, 1f));
         public static void Register2() => Register("Quan_wood_floor_triangle_1x1_2", "Quan's Triangular Wood Floor 1x1 (2)", new Vector3(-1f, 0f, 1f));
 
+        // The same triangle as (1), with the planks running along the long edge, so that edge is a plank's own
+        // bevelled edge: a chamfered end for a shelf. Symmetric, so it needs no mirror image.
+        public static void RegisterBevelled() => Register("Quan_bevelled_shelf_edge", "Quan's Bevelled Shelf Edge", new Vector3(1f, 0f, 1f),
+            BevelledDescription, planksAlongCut: true);
+
+        private const string BevelledDescription =
+            "Half a 1x1 wood floor with its planks running along the long edge, which gives the end of a 1x1 shelf a " +
+            "neat bevelled corner into the wall behind it.";
+
+        // How far the planks are lengthened along their grain before turning, so they span the 1.41 m long edge.
+        private const float BevelledPlankLength = 1.6f;
+
         private const string Description =
             "Half a 1x1 wood floor, cut corner to corner. Fills small triangular gaps, or finishes the end of a 1x1 " +
             "shelf with a 45° corner into the wall behind it.";
 
-        private static void Register(string prefabName, string name, Vector3 cutNormal)
+        private static void Register(string prefabName, string name, Vector3 cutNormal,
+                                     string description = Description, bool planksAlongCut = false)
         {
             var basePrefab = PrefabManager.Instance.GetPrefab(BasePrefab);
             var basePiece = basePrefab ? basePrefab.GetComponent<Piece>() : null;
@@ -38,7 +51,7 @@ namespace QuanPieces.Pieces
             var config = new PieceConfig
             {
                 Name = name,
-                Description = Description,
+                Description = description,
                 PieceTable = PieceTables.Hammer,
                 Category = QuanPiecesPlugin.HammerCategory,
                 CraftingStation = basePiece.m_craftingStation ? basePiece.m_craftingStation.name : CraftingStations.Workbench,
@@ -49,7 +62,7 @@ namespace QuanPieces.Pieces
             };
 
             var customPiece = new CustomPiece(prefabName, BasePrefab, config);
-            if (!Build(customPiece.PiecePrefab, name, cutNormal.normalized))
+            if (!Build(customPiece.PiecePrefab, name, cutNormal.normalized, planksAlongCut))
             {
                 return;
             }
@@ -67,7 +80,7 @@ namespace QuanPieces.Pieces
             PieceManager.Instance.AddPiece(customPiece);
         }
 
-        private static bool Build(GameObject prefab, string name, Vector3 cutNormal)
+        private static bool Build(GameObject prefab, string name, Vector3 cutNormal, bool planksAlongCut)
         {
             var root = prefab.transform;
             var colliderObject = root.Find("collider");
@@ -91,7 +104,8 @@ namespace QuanPieces.Pieces
                         return false;
                     }
                     var toPiece = root.worldToLocalMatrix * filter.transform.localToWorldMatrix;
-                    var cut = new MeshData().Append(data, toPiece).Cut(cutNormal, 0f);
+                    var inPiece = new MeshData().Append(data, toPiece);
+                    var cut = planksAlongCut ? AlongCut(inPiece, cutNormal) : inPiece.Cut(cutNormal, 0f);
                     filter.sharedMesh = new MeshData().Append(cut, toPiece.inverse).ToMesh(filter.sharedMesh.name + "_quan_triangle");
                     cutAny = true;
                 }
@@ -141,6 +155,37 @@ namespace QuanPieces.Pieces
             meshCollider.sharedMaterial = box.sharedMaterial;
             Object.DestroyImmediate(colliderObject.gameObject);
             return true;
+        }
+
+        /// <summary>
+        /// The floor's planks turned to run along the cut: lengthened along their grain (z) without stretching the
+        /// texture, turned 45° so they lie parallel to the cut line, moved so one plank's outer edge is the cut line,
+        /// then cut along the triangle's two short sides. The planks run along z, the cut normal is (1, 0, 1).
+        /// </summary>
+        private static MeshData AlongCut(MeshData floor, Vector3 cutNormal)
+        {
+            // z to y and back, so MeshData.ExtendY can lengthen the planks along their grain.
+            var zToY = Matrix4x4.identity;
+            zToY.SetColumn(1, new Vector4(0f, 0f, -1f, 0f)); // y goes to -z
+            zToY.SetColumn(2, new Vector4(0f, 1f, 0f, 0f));  // z goes to y
+            var longer = new MeshData()
+                .Append(new MeshData().Append(floor, zToY).ExtendY(0f, BevelledPlankLength), zToY.inverse);
+
+            // Turn so x points out across the cut (along its normal) and the planks (z) run along the cut line.
+            var across = cutNormal.normalized;
+            var along = Vector3.Cross(across, Vector3.up).normalized; // keeps the turn a rotation, not a mirror
+            var turn = Matrix4x4.identity;
+            turn.SetColumn(0, across);
+            turn.SetColumn(1, Vector3.up);
+            turn.SetColumn(2, along);
+            var turned = new MeshData().Append(longer, turn);
+
+            // Slide out so the outermost plank edge lies on the cut line, through the piece's centre.
+            var outermost = turned.Positions.Max(p => Vector3.Dot(p, across));
+            var placed = new MeshData().Append(turned, Matrix4x4.Translate(-across * outermost));
+
+            // Trim to the triangle: keep x >= -0.5 and z >= -0.5 (the short sides of the half kept by Cut).
+            return placed.Cut(new Vector3(-1f, 0f, 0f), 0.5f).Cut(new Vector3(0f, 0f, -1f), 0.5f);
         }
 
         /// <summary>The box collider's bounds in the piece's own space.</summary>

@@ -14,9 +14,9 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | | | | **Done** | |
 | ✅ | ✅ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | **Passed (14 Nov):** QuanPieces 1.5.0 loaded; no "Couldn't add" or "skipped" lines, no errors; Jotunn added 18 pieces (9 existing + 9 new). |
 | ✅ | ✅ | 2 | Open the hammer's QuanPieces tab. | **Passed (14 Nov):** all nine new pieces in the tab; costs 2, 1, 1, 3, 2 Wood (walls), 1 Wood (triangles), 4 Finewood + 1 Bronze Nails (item stands, vanilla's), all at a Workbench. Triangle (2)'s icon shows it nearly edge-on (same render angle as (1)); cosmetic, offered a turned icon. |
+| ✅ | ✅ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | **Passed (14 Nov):** same planks and colour from the front; from behind, vanilla's two beams show and Quan's has none. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | Same planks and colour; no beams on Quan's, from either side. |
 | ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |
 | ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; no beams, front or back; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
 | ⬜ | ⬜ | 6 | Place a 1x3 beside the 2x3. | Same height and grain scale as the 2x3. |

@@ -15,11 +15,11 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | **Passed (14 Nov):** QuanPieces 1.5.0 loaded; no "Couldn't add" or "skipped" lines, no errors; Jotunn added 18 pieces (9 existing + 9 new). |
 | ✅ | ✅ | 2 | Open the hammer's QuanPieces tab. | **Passed (14 Nov):** all nine new pieces in the tab; costs 2, 1, 1, 3, 2 Wood (walls), 1 Wood (triangles), 4 Finewood + 1 Bronze Nails (item stands, vanilla's), all at a Workbench. Triangle (2)'s icon shows it nearly edge-on (same render angle as (1)); cosmetic, offered a turned icon. |
 | ✅ | ✅ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | **Passed (14 Nov):** same planks and colour from the front; from behind, vanilla's two beams show and Quan's has none. |
+| ✅ | ✅ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | **Passed (14 Nov):** planks and colour match from the front; from behind only the vanilla twin of each pair shows a beam. |
+| ✅ | ✅ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | **Passed (14 Nov):** 3 m tall; no beams front or back; grain runs the full height at the walls' scale, no stretch, seam or repeat. |
+| ✅ | ✅ | 6 | Place a 1x3 beside the 2x3. | **Passed (14 Nov):** same height and grain scale as the 2x3. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |
-| ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; no beams, front or back; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
-| ⬜ | ⬜ | 6 | Place a 1x3 beside the 2x3. | Same height and grain scale as the 2x3. |
 | ⬜ | ⬜ | 7 | Snap the 3 m walls: to a floor's edge, side by side, and one wall on top of another. | They snap at floor level and at 3 m; no gaps or overlaps. |
 | ⬜ | ⬜ | 8 | Hit one of each wall until it's worn, then until it's broken (or damage with devcommands). | Worn and broken looks have no beams; on the 3 m walls they're 3 m tall. |
 | ⬜ | ⬜ | 9 | Walk away from a 2x3 and 1x3 until they switch to their distant look. | The distant slab is the full 3 m, not 2 m or 1 m. |

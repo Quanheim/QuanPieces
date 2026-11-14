@@ -171,6 +171,15 @@ namespace QuanPieces.Pieces
             var longer = new MeshData()
                 .Append(new MeshData().Append(floor, zToY).ExtendY(0f, BevelledPlankLength), zToY.inverse);
 
+            // Narrow the planks across (x) by 1/√2, so the two of them exactly fill the triangle's 0.71 m depth and
+            // their seam meets each short side halfway, where a 1x1 floor's seam meets the same edge (a mitre). The
+            // texture is cropped, not squashed. x to y and back, for ExtendY.
+            var xToY = Matrix4x4.identity;
+            xToY.SetColumn(0, new Vector4(0f, 1f, 0f, 0f));  // x goes to y
+            xToY.SetColumn(1, new Vector4(-1f, 0f, 0f, 0f)); // y goes to -x
+            var narrower = new MeshData()
+                .Append(new MeshData().Append(longer, xToY).ExtendY(0f, 1f / Mathf.Sqrt(2f)), xToY.inverse);
+
             // Turn so x points out across the cut (along its normal) and the planks (z) run along the cut line.
             var across = cutNormal.normalized;
             var along = Vector3.Cross(across, Vector3.up).normalized; // keeps the turn a rotation, not a mirror
@@ -178,7 +187,7 @@ namespace QuanPieces.Pieces
             turn.SetColumn(0, across);
             turn.SetColumn(1, Vector3.up);
             turn.SetColumn(2, along);
-            var turned = new MeshData().Append(longer, turn);
+            var turned = new MeshData().Append(narrower, turn);
 
             // Slide out so the outermost plank edge lies on the cut line, through the piece's centre.
             var outermost = turned.Positions.Max(p => Vector3.Dot(p, across));

@@ -432,7 +432,9 @@ cut on a diagonal plane through its centre. No patches.
   on the cut-off corner and the square snow cover (`floor_1x1_snow`) are removed.
 - The Bevelled Shelf Edge (`Quan_bevelled_shelf_edge`) is (1)'s triangle with the planks along the long edge: the
   planks are lengthened along their grain with `MeshData.ExtendY` (via a z-to-y turn, so the texture extends rather
-  than stretches), turned 45° with the outermost plank's edge on the long edge, then cut along the two short sides.
+  than stretches), narrowed across by 1/√2 (texture cropped, not squashed) so the two planks exactly fill the
+  triangle's depth and their seam meets each short side halfway, where a 1x1 floor's seam meets it, then turned 45°
+  with the outermost plank's edge on the long edge and cut along the two short sides.
 
 </details>
 

@@ -20,12 +20,16 @@ namespace QuanPieces.Pieces
         private const float MinColliderSize = 0.1f;
 
         public static void RegisterWall() => Register("Quan_itemstand", "itemstand",
-            "The wall item stand without its backplate: just the nub, so the item sits right against the wall.");
+            "The wall item stand without its backplate: just the nub, so the item sits right against the wall.",
+            nubUnderItem: false);
 
+        // Vanilla's floor stand attaches the item at the plate's centre, 5 cm to one side of its nub; with no plate
+        // the nub would show beside the item, so it moves under the item.
         public static void RegisterFloor() => Register("Quan_itemstandh", "itemstandh",
-            "The floor item stand without its underplate: just the nub, so the item sits right on the floor.");
+            "The floor item stand without its underplate: just the nub, so the item sits right on the floor.",
+            nubUnderItem: true);
 
-        private static void Register(string prefabName, string basePrefabName, string description)
+        private static void Register(string prefabName, string basePrefabName, string description, bool nubUnderItem)
         {
             var basePrefab = PrefabManager.Instance.GetPrefab(basePrefabName);
             var basePiece = basePrefab ? basePrefab.GetComponent<Piece>() : null;
@@ -49,7 +53,7 @@ namespace QuanPieces.Pieces
             };
 
             var customPiece = new CustomPiece(prefabName, basePrefabName, config);
-            if (!Build(customPiece.PiecePrefab, basePrefabName))
+            if (!Build(customPiece.PiecePrefab, basePrefabName, nubUnderItem))
             {
                 return;
             }
@@ -67,7 +71,7 @@ namespace QuanPieces.Pieces
             PieceManager.Instance.AddPiece(customPiece);
         }
 
-        private static bool Build(GameObject prefab, string baseName)
+        private static bool Build(GameObject prefab, string baseName, bool nubUnderItem)
         {
             var root = prefab.transform;
             var stand = prefab.GetComponent<ItemStand>();
@@ -89,18 +93,31 @@ namespace QuanPieces.Pieces
                 return false;
             }
 
-            // Which way the nub sticks out, and how far the plate's face stands off the surface (the piece's origin).
+            // Which way the nub sticks out: the plate's face normal (its thinnest axis), towards the nub. Not simply
+            // plate-to-nub: the floor stand's nub sits further to one side of the plate's centre than above it.
+            // Then how far the plate's face stands off the surface (the piece's origin).
             var first = looks[0].OrderByDescending(r => Volume(Bounds(r, root))).ToArray();
             var plate = Bounds(first[0], root);
             var nub = Bounds(first[1], root);
-            var outward = Dominant(nub.center - plate.center);
+            var thin = plate.size.x <= plate.size.y && plate.size.x <= plate.size.z ? 0 : plate.size.y <= plate.size.z ? 1 : 2;
+            var outward = Vector3.zero;
+            outward[thin] = Mathf.Sign(nub.center[thin] - plate.center[thin]);
             var shift = -outward * Far(plate, outward);
+
+            // On the floor stand the nub also slides sideways to sit under the attach point, where the item hides it.
+            var nubShift = shift;
+            if (nubUnderItem)
+            {
+                var sideways = root.InverseTransformPoint(stand.m_attachOther.position) - nub.center;
+                sideways[thin] = 0f;
+                nubShift += sideways;
+            }
 
             foreach (var look in looks)
             {
                 var ordered = look.OrderByDescending(r => Volume(Bounds(r, root))).ToArray();
                 Object.DestroyImmediate(ordered[0].gameObject);
-                ordered[1].transform.position += root.TransformVector(shift);
+                ordered[1].transform.position += root.TransformVector(nubShift);
             }
             stand.m_attachOther.position += root.TransformVector(shift);
             if (stand.m_dropSpawnPoint != null)
@@ -122,9 +139,9 @@ namespace QuanPieces.Pieces
             }
 
             // A collider round the nub, from the surface outwards, at least MinColliderSize across.
-            var nubNow = new Bounds(nub.center + shift, nub.size);
+            var nubNow = new Bounds(nub.center + nubShift, nub.size);
             var size = Vector3.Max(nubNow.size, Vector3.one * MinColliderSize);
-            var axis = Mathf.Abs(outward.x) > 0.5f ? 0 : Mathf.Abs(outward.y) > 0.5f ? 1 : 2;
+            var axis = thin;
             size[axis] = Mathf.Max(Far(nubNow, outward), MinColliderSize);
             var centre = nubNow.center;
             centre[axis] = outward[axis] * size[axis] / 2f;
@@ -157,14 +174,5 @@ namespace QuanPieces.Pieces
         /// <summary>How far the bounds reach from the origin along the unit axis <paramref name="outward"/>.</summary>
         private static float Far(Bounds b, Vector3 outward) =>
             Vector3.Dot(outward, outward.x + outward.y + outward.z > 0f ? b.max : b.min);
-
-        /// <summary>The axis direction (signed unit vector) <paramref name="v"/> points along most.</summary>
-        private static Vector3 Dominant(Vector3 v)
-        {
-            var a = new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
-            return a.x >= a.y && a.x >= a.z ? new Vector3(Mathf.Sign(v.x), 0, 0)
-                 : a.y >= a.z ? new Vector3(0, Mathf.Sign(v.y), 0)
-                 : new Vector3(0, 0, Mathf.Sign(v.z));
-        }
     }
 }

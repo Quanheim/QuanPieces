@@ -35,7 +35,7 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall. | **Passed (14 Nov):** covered by 22: both ends bevelled, snapping cleanly, nothing through the wall. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
-| ⬜ | ⬜ | 19 | Same with the floor stand beside a vanilla floor stand, on a floor and on a 1x1 shelf. | Only the nub shows, on the surface; items sit 2.5 cm lower than on vanilla's, resting on or just above the surface, not sunk into it. |
+| ⬜ | ⬜ | 19 | **Re-import the 1.5.0 zip** (new build). Place a floor stand beside a vanilla one on a table and a 1x1 shelf; attach the same item to both; aim at the bare nub. | No gap: the stand sits on the table, ~1 cm of nub showing when empty; the item rests on the table (not on top of the nub) and hides the nub; hover text appears when aiming at the nub, and at the item once attached. **Bug (14 Nov, first build):** "out" was taken as plate-to-nub, which on the rotated floor stand is sideways: nub, attach point and hover box moved 10 cm along the table, the stand floated 2.5 cm (placement puts the collider on the surface), hover only beside the nub, item on top of the nub. Fixed: out is the plate's face normal; the nub moves under the item. |
 | ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
 
 ## Eating troughs

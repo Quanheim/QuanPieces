@@ -448,10 +448,16 @@ the game's own `ItemStand`. No patches.
 
 - Each look (`New`, `WornBroken`) is two boxes: the plate (the bigger) and the nub. The plates are deleted, and the
   `LODGroup` drops their empty entries.
-- The piece's origin is the surface it's placed on, and the plate's face stands off it (5 cm on the wall stand,
-  2.5 cm on the floor stand). The nub, `m_attachOther` and `m_dropSpawnPoint` all move back by that much. The game
-  places an attached item relative to `m_attachOther` (plus the item's own `attach` offset), so every item keeps
-  its vanilla position relative to the nub, only closer to the surface.
-- The `collider` box is remade round the nub, from the surface out, at least 10 cm across, so it's easy to aim at.
+- "Out" is the plate's face normal (its thinnest axis), towards the nub. The floor stand's parts are rotated 90°
+  and its nub sits 5.4 cm to one side of the plate's centre, so the plate-to-nub direction would point sideways.
+- The plate's face stands off the piece's origin (5 cm on the wall stand, 2.5 cm on the floor stand). The nub,
+  `m_attachOther` and `m_dropSpawnPoint` all move back by that much. The game places an attached item relative to
+  `m_attachOther` (plus the item's own `attach` offset), so every item keeps its vanilla position relative to the
+  plate's face, now the surface itself.
+- On the floor stand the nub also slides sideways under the attach point (vanilla attaches items at the plate's
+  centre, beside the nub), so an attached item hides it.
+- The `collider` box is remade round the nub, starting exactly at the origin and going out, at least 10 cm across.
+  Placement (`Player.UpdatePlacementGhost`) puts the collider's nearest point on the surface, so the box's start
+  is where the surface ends up: it must be the origin, or the stand floats (found in testing on the floor stand).
 
 </details>

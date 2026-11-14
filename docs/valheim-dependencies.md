@@ -118,6 +118,7 @@ Things the game does that the mod counts on without calling them, e.g. "only the
 | `EffectArea.IsPointInsideArea` | Finds areas with a physics overlap, so a deactivated warmth object stops counting at once. |
 | `Bed.CheckFire` | Also accepts a Heat area: a bed on a warm coop floor counts as near a fire. |
 | `WearNTear.RPC_CreateFragments` | Switches on every object in `m_fragmentRoots` and breaks it into fragments. The plank walls keep `high` (their fragment roots), minus the beam boxes; a missing root throws and leaves the piece standing after the refund. |
+| `Player.UpdatePlacementGhost` | Without a snap point, moves the ghost so its colliders' nearest point to the aim point touches the surface. Quan's Item Stands start their collider at the piece's origin so the surface lands there. |
 | `ItemStand.SetVisualItem` | Places an attached item at `m_attachOther` plus the item's own `attach` offset, so moving the attach point moves every item with the nub. |
 
 ## Prefabs and assets

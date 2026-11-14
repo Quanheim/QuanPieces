@@ -24,7 +24,7 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 10 | Turn on the hammer's support view on a wall of 3 m walls. | **Passed (14 Nov):** support colours as for vanilla wood walls (Quandru's read of the support view). |
 | ✅ | ✅ | 11 | Walk into the top metre of a 3 m wall; aim the hammer at its top. | **Passed (14 Nov):** solid all the way up; the hammer highlights and repairs the added top section. |
 | ✅ | ✅ | 12 | **Re-import the fixed 1.5.0 zip first.** Remove one of each wall with the hammer (the stuck wall from test 3 too). | **Passed (14 Nov), fixed build:** every wall, the stuck one included, deconstructs cleanly. **Bug found in test 3:** removing gave the wood back but the wall stayed (infinite wood); `high` had been deleted but is the wall's fragment roots. |
-| ✅ | ✅ | 13 | Place each triangular floor; look at the cut edge from the side and above. | **Passed (14 Nov):** the diagonal cut is closed and textured as wood, no gaps. (1) vs (2) plank directions not separately shown. |
+| ✅ | ✅ | 13 | Place each triangular floor; look at the cut edge from the side and above. | **Passed (14 Nov):** the diagonal cut is closed and textured as wood, no gaps; (1) and (2) side by side are mirror images and meet cleanly. |
 | ✅ | ✅ | 15 | Walk onto a triangle and along its long edge; walk through the missing half. | **Passed (14 Nov):** you slide smoothly along the 45° edge; the missing half doesn't catch you (a vanilla 1x1 floor beside it catches on its corner, as expected). Item drop not separately shown. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |

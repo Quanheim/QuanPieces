@@ -382,7 +382,10 @@ the beams taken out of their meshes. No patches.
 
 - Each wear state (`New`, `Worn`, `Broken`) is a `LODGroup`. Up close it draws one combined mesh of planks and
   beams, baked in the editor by SimpleMeshCombine from the boxes under `high` (their renderers are off, and they're
-  in no LOD; the clones delete them). From a distance it draws a plain slab, which has no beams anyway.
+  in no LOD). From a distance it draws a plain slab, which has no beams anyway.
+- The `high` boxes are what the wall breaks into when removed or destroyed: `WearNTear.m_fragmentRoots` points at
+  each state's `high`. So they stay, minus the beam boxes; on the 3 m walls the plank boxes are lengthened too.
+  (Deleting `high` made `RPC_CreateFragments` throw after the refund, leaving the wall standing.)
 - The combined mesh is split into islands (`MeshData.KeepIslands`), and the islands under 0.5 m tall are dropped:
   the beams are 0.18-0.33 m, the planks 1-2 m. The mesh is handled in the piece's own space, since the combined
   meshes sit under offset transforms (some at y = 50 or 51).

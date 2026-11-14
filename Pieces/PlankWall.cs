@@ -143,10 +143,22 @@ namespace QuanPieces.Pieces
             var converted = new Dictionary<Mesh, Mesh>(); // the 1x1 shares one mesh between its states
             foreach (var state in states)
             {
-                // The separate plank boxes the combined mesh was made from: renderers off, in no LOD. Remove them.
-                foreach (var high in state.Cast<Transform>().Where(c => c.name == "high").ToList())
+                // The separate boxes the combined mesh was made from (renderers off, in no LOD) are what the wall
+                // breaks into: WearNTear.m_fragmentRoots points at each state's 'high', so it must stay. Drop its beam
+                // boxes, and on the taller walls make its plank boxes as tall as the wall.
+                foreach (var high in state.Cast<Transform>().Where(c => c.name == "high"))
                 {
-                    Object.DestroyImmediate(high.gameObject);
+                    foreach (var box in high.GetComponentsInChildren<MeshRenderer>(true).ToList())
+                    {
+                        if (PieceBounds(box, root).size.y < BeamMaxHeight)
+                        {
+                            Object.DestroyImmediate(box.gameObject);
+                        }
+                        else if (spec.HeightScale != 1f)
+                        {
+                            Lift(box.transform, root, spec, stretch: true);
+                        }
+                    }
                 }
 
                 var lodGroup = state.GetComponent<LODGroup>();
@@ -172,7 +184,7 @@ namespace QuanPieces.Pieces
                     var lod1 = new HashSet<Transform>(lods.Skip(1).SelectMany(l => l.renderers).Where(r => r != null).Select(r => r.transform));
                     foreach (Transform child in state)
                     {
-                        if (!lod0.Contains(child))
+                        if (!lod0.Contains(child) && child.name != "high") // high's boxes were placed above
                         {
                             Lift(child, root, spec, stretch: lod1.Contains(child));
                         }
@@ -252,5 +264,21 @@ namespace QuanPieces.Pieces
         }
 
         private static Vector3 Axis(int i) => i == 0 ? Vector3.right : i == 1 ? Vector3.up : Vector3.forward;
+
+        /// <summary>A renderer's mesh bounds in the piece's own space.</summary>
+        private static Bounds PieceBounds(Renderer renderer, Transform root)
+        {
+            var filter = renderer.GetComponent<MeshFilter>();
+            var local = filter && filter.sharedMesh ? filter.sharedMesh.bounds : new Bounds();
+            var toPiece = root.worldToLocalMatrix * renderer.transform.localToWorldMatrix;
+            var bounds = new Bounds(toPiece.MultiplyPoint3x4(local.center), Vector3.zero);
+            foreach (var sx in new[] { -1f, 1f })
+            foreach (var sy in new[] { -1f, 1f })
+            foreach (var sz in new[] { -1f, 1f })
+            {
+                bounds.Encapsulate(toPiece.MultiplyPoint3x4(local.center + Vector3.Scale(local.extents, new Vector3(sx, sy, sz))));
+            }
+            return bounds;
+        }
     }
 }

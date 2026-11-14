@@ -117,6 +117,7 @@ Things the game does that the mod counts on without calling them, e.g. "only the
 | `EggGrow.CanGrow` | An egg grows only inside a Heat `EffectArea` (and under a roof), and losing heat resets it; that's what the coop floor's switchable warmth and the floor heater rely on. |
 | `EffectArea.IsPointInsideArea` | Finds areas with a physics overlap, so a deactivated warmth object stops counting at once. |
 | `Bed.CheckFire` | Also accepts a Heat area: a bed on a warm coop floor counts as near a fire. |
+| `WearNTear.RPC_CreateFragments` | Switches on every object in `m_fragmentRoots` and breaks it into fragments. The plank walls keep `high` (their fragment roots), minus the beam boxes; a missing root throws and leaves the piece standing after the refund. |
 | `ItemStand.SetVisualItem` | Places an attached item at `m_attachOther` plus the item's own `attach` offset, so moving the attach point moves every item with the nub. |
 
 ## Prefabs and assets
@@ -145,7 +146,7 @@ after each update.
 | `iron_floor_2x2` | Chimney flue base (`New`). | Renamed. |
 | `stone_floor_2x2` | Chimney flue texture and sounds. | Renamed. |
 | `wood_pole` | Coop and planter wood materials (`New`, `WornBroken`). | Renamed. |
-| `woodwall` | Base of Quan's Wood Wall and Wood Wall 2x3. Children `New`, `Worn`, `Broken` (each a `LODGroup`: LOD0 the combined plank-and-beam mesh, LOD1 a slab; `high` holds the unused source boxes), snap points, `beam_2m_snow`; root `BoxCollider`. Beams are the mesh islands under 0.5 m tall. | Renamed, the states or LODs restructured, or the beams no longer separate islands (the piece logs and skips). |
+| `woodwall` | Base of Quan's Wood Wall and Wood Wall 2x3. Children `New`, `Worn`, `Broken` (each a `LODGroup`: LOD0 the combined plank-and-beam mesh, LOD1 a slab; `high` holds the source boxes, which are `WearNTear.m_fragmentRoots`), snap points, `beam_2m_snow`; root `BoxCollider`. Beams are the mesh islands under 0.5 m tall. | Renamed, the states or LODs restructured, or the beams no longer separate islands (the piece logs and skips). |
 | `wood_wall_half` | Base of Quan's Wood Wall Half. Same layout as `woodwall`. | As `woodwall`. |
 | `wood_wall_quarter` | Base of Quan's Wood Wall 1x1 and Wood Wall 1x3. Same layout as `woodwall`, pivot at its foot; all three states share one mesh. | As `woodwall`. |
 | `woodwall` material texture | `Planks5c_low` tiles, with the material showing 0.56 of its width along a plank: the 3 m walls' UVs run past 0..1 and rely on it repeating. | The texture stops tiling, or the material's tiling changes (the 3 m walls' grain scale shifts). |

@@ -5,7 +5,9 @@
 - New pieces: Quan's Wood Wall, Quan's Wood Wall Half and Quan's Wood Wall 1x1. The vanilla wood walls with only
   their vertical planks, no beams across the back, at vanilla's cost.
 - New pieces: Quan's Wood Wall 2x3 (3 Wood) and Quan's Wood Wall 1x3 (2 Wood). Plank walls 3 m tall, with the wood
-  grain carried up the planks rather than stretched.
+  grain carried up the planks rather than stretched. Like the walls above, they have no beams.
+- New pieces: Quan's Triangular Wood Floor 1x1 (1) and (2), 1 Wood each. A 1x1 wood floor cut corner to corner,
+  for small gaps or a neat 45° end to a 1x1 shelf. Mirror images of each other.
 
 ## 1.4.0 - 2026-11-07
 

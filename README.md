@@ -165,6 +165,25 @@ look, the same wear states as they take damage, the same support and snapping, p
 
 </details>
 
+<details>
+<summary><b>Quan's Triangular Wood Floors 1x1</b></summary>
+
+A 1x1 wood floor cut in half corner to corner. Use it to fill small triangular gaps, or to finish the end of a 1x1
+shelf: snap it to the shelf's end and it meets the wall behind at a clean 45°, without the corner poking out
+through the back of a thin wooden wall.
+
+| | Triangular Wood Floor 1x1 (1) | Triangular Wood Floor 1x1 (2) |
+|---|---|---|
+| **Size** | half a 1x1 | half a 1x1 |
+| **Cost** | 1 Wood | 1 Wood |
+| **Crafting station** | Workbench | Workbench |
+
+- (1) and (2) are mirror images: the planks run along one short side or the other, so you can match the floor or
+  shelf beside it.
+- It snaps at its three corners, and needs the same support as any wooden floor.
+
+</details>
+
 ## For developers
 
 A BepInEx/Jotunn mod. Each piece lives in its own class under `Pieces/`, Harmony patches under `Patches/` and shared mesh code under `Meshes/`. The Thunderstore page is
@@ -340,5 +359,21 @@ the beams taken out of their meshes. No patches.
   the 2x2's grain scale uses 0.84 of it and nothing visibly repeats. Vanilla maps the same texture span onto 1 m
   and 2 m planks, so the 1x3 takes half the 1x1's grain density to match the 2x2 and 2x3.
 - On the 3 m walls, the snap points, snow, distant slab and box collider move or grow with the extra height.
+
+</details>
+
+<details>
+<summary><b>Quan's Triangular Wood Floors 1x1</b> (<code>Quan_wood_floor_triangle_1x1_1</code>, <code>Quan_wood_floor_triangle_1x1_2</code>)</summary>
+
+`Pieces/TriangleFloor.cs`. Clones of the vanilla 1x1 wood floor (`wood_floor_1x1`, two planks running along z),
+cut on a diagonal plane through its centre. No patches.
+
+- Every mesh in `New`, `Worn` and `Broken` (the planks and the distant box) is cut with `MeshData.Cut`: a `Clip`,
+  then each plank's cross-section on the plane (the convex hull of its points there) is closed with a flat face,
+  so the cut planks stay solid. The mesh is handled in the piece's own space and moved back.
+- The two versions cut on opposite diagonals, keeping the right angle at a different corner. With the planks
+  along z, that makes them mirror images, which no rotation can swap.
+- The square box collider (`collider`) becomes a convex `MeshCollider` wedge of the same thickness. The snap point
+  on the cut-off corner and the square snow cover (`floor_1x1_snow`) are removed.
 
 </details>

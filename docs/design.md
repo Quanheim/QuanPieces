@@ -7,16 +7,16 @@ built, move its description to the README and remove it from this file.
 ## ▶ Test run: plank walls (1.5.0)
 
 Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
-1x3 (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
+1x3, and Quan's Triangular Wood Floor 1x1 (1) and (2) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
 
 | Test | OK | # | Do | Expect / Result |
 |---|---|---|---|---|
 | | | | **Remaining** | |
 | ⬜ | ⬜ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | Log has no "Couldn't add" or "skipped" lines for any wood wall. |
-| ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. |
+| ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. Two triangular floors, 1 Wood each. |
 | ⬜ | ⬜ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | Same planks and colour; no beams on Quan's, from either side. |
 | ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |
-| ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
+| ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; no beams, front or back; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
 | ⬜ | ⬜ | 6 | Place a 1x3 beside the 2x3. | Same height and grain scale as the 2x3. |
 | ⬜ | ⬜ | 7 | Snap the 3 m walls: to a floor's edge, side by side, and one wall on top of another. | They snap at floor level and at 3 m; no gaps or overlaps. |
 | ⬜ | ⬜ | 8 | Hit one of each wall until it's worn, then until it's broken (or damage with devcommands). | Worn and broken looks have no beams; on the 3 m walls they're 3 m tall. |
@@ -24,6 +24,10 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ⬜ | ⬜ | 10 | Turn on the hammer's support view on a wall of stacked 3 m walls. | Support colours as for vanilla wood walls; the walls don't fall. |
 | ⬜ | ⬜ | 11 | Walk into the top metre of a 3 m wall; aim the hammer at its top. | You can't walk through it; the hammer targets it all the way up. |
 | ⬜ | ⬜ | 12 | Remove one of each wall with the hammer. | Full cost back: 2, 1, 1, 3, 2 Wood. |
+| ⬜ | ⬜ | 13 | Place each triangular floor on the ground; walk round it and look at the cut edge from the side and above. | Half a 1x1 floor, cut corner to corner; the cut edge is closed (wood, no see-through gaps); (1) and (2) have their planks along different short sides. |
+| ⬜ | ⬜ | 14 | **Shelf test:** make a 1x1 floor shelf halfway up a Quan's Wood Wall (your usual way), then snap a triangle to the shelf's end with its long edge to the wall. | It snaps at the shelf's corners; the 45° edge meets the wall, and nothing pokes out of the wall's back. |
+| ⬜ | ⬜ | 15 | Walk onto a triangle on the ground, step off its long edge; drop an item on it. | You stand on the triangle but not on the empty half; the item rests on it. |
+| ⬜ | ⬜ | 16 | Damage a triangle to worn and broken; walk away until it switches to its distant look; remove it. | Worn, broken and distant looks are triangles too; 1 Wood back. |
 
 ## Eating troughs
 

@@ -101,36 +101,8 @@ namespace QuanPieces.Meshes
         /// </summary>
         public MeshData KeepIslands(Func<Bounds, bool> keep, out List<Bounds> kept)
         {
-            var parent = Enumerable.Range(0, Positions.Count).ToArray();
-            int Root(int i)
-            {
-                while (parent[i] != i)
-                {
-                    parent[i] = parent[parent[i]];
-                    i = parent[i];
-                }
-                return i;
-            }
-            void Join(int a, int b) => parent[Root(a)] = Root(b);
-
-            var byPosition = new Dictionary<Vector3Int, int>();
-            for (var i = 0; i < Positions.Count; i++)
-            {
-                var key = Vector3Int.RoundToInt(Positions[i] * 10000f);
-                if (byPosition.TryGetValue(key, out var other))
-                {
-                    Join(i, other);
-                }
-                else
-                {
-                    byPosition[key] = i;
-                }
-            }
-            for (var t = 0; t < Triangles.Count; t += 3)
-            {
-                Join(Triangles[t], Triangles[t + 1]);
-                Join(Triangles[t], Triangles[t + 2]);
-            }
+            var roots = IslandRoots();
+            int Root(int i) => roots[i];
 
             var islands = new Dictionary<int, Bounds>();
             for (var i = 0; i < Positions.Count; i++)
@@ -170,6 +142,133 @@ namespace QuanPieces.Meshes
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// Like <see cref="Clip"/>, but closes the cut: each island's cross-section on the plane gets a flat face
+        /// pointing out of the cut, so a cut box stays solid. The new faces' UVs map the wood texture flat across
+        /// the cut (end grain needs no particular direction). Each island must be convex, as planks and boxes are.
+        /// </summary>
+        public MeshData Cut(Vector3 normal, float distance)
+        {
+            normal = normal.normalized;
+            var result = Clip(normal, distance);
+            var roots = result.IslandRoots();
+
+            // A basis on the plane: along it horizontally, and up it.
+            var along = Vector3.Cross(Vector3.up, normal);
+            along = along.sqrMagnitude > 1e-6f ? along.normalized : Vector3.right;
+            var up = Vector3.Cross(normal, along);
+
+            var onPlane = new Dictionary<int, List<Vector2>>();
+            for (var i = 0; i < result.Positions.Count; i++)
+            {
+                var p = result.Positions[i];
+                if (Mathf.Abs(Vector3.Dot(normal, p) - distance) > 1e-4f)
+                {
+                    continue;
+                }
+                if (!onPlane.TryGetValue(roots[i], out var points))
+                {
+                    onPlane[roots[i]] = points = new List<Vector2>();
+                }
+                points.Add(new Vector2(Vector3.Dot(p, along), Vector3.Dot(p, up)));
+            }
+
+            var origin = normal * distance;
+            foreach (var points in onPlane.Values)
+            {
+                var hull = ConvexHull(points);
+                if (hull.Count < 3)
+                {
+                    continue;
+                }
+                var corners = hull.Select(h => origin + along * h.x + up * h.y).ToList();
+                for (var k = 1; k + 1 < corners.Count; k++)
+                {
+                    var a = corners[0];
+                    var b = corners[k];
+                    var c = corners[k + 1];
+                    if (Vector3.Dot(Vector3.Cross(b - a, c - a), normal) < 0f)
+                    {
+                        var swap = b;
+                        b = c;
+                        c = swap;
+                    }
+                    foreach (var p in new[] { a, b, c })
+                    {
+                        result.Triangles.Add(result.AddVertex(p, normal,
+                            new Vector2(Vector3.Dot(p, along) / 2f, Vector3.Dot(p, up) / 0.4f)));
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>The convex hull of 2D points (Andrew's monotone chain), in order around it.</summary>
+        private static List<Vector2> ConvexHull(List<Vector2> points)
+        {
+            var sorted = points.Distinct().OrderBy(p => p.x).ThenBy(p => p.y).ToList();
+            if (sorted.Count < 3)
+            {
+                return sorted;
+            }
+            float Turn(Vector2 o, Vector2 a, Vector2 b) => (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+            var hull = new List<Vector2>();
+            foreach (var pass in new[] { sorted, Enumerable.Reverse(sorted).ToList() })
+            {
+                var start = hull.Count;
+                foreach (var p in pass)
+                {
+                    while (hull.Count >= start + 2 && Turn(hull[hull.Count - 2], hull[hull.Count - 1], p) <= 1e-9f)
+                    {
+                        hull.RemoveAt(hull.Count - 1);
+                    }
+                    hull.Add(p);
+                }
+                hull.RemoveAt(hull.Count - 1);
+            }
+            return hull;
+        }
+
+        /// <summary>
+        /// Each vertex's island, as a representative vertex index: vertices are joined by shared triangles and by
+        /// shared positions (a part's vertices are often split along UV seams).
+        /// </summary>
+        private int[] IslandRoots()
+        {
+            var parent = Enumerable.Range(0, Positions.Count).ToArray();
+            int Root(int i)
+            {
+                while (parent[i] != i)
+                {
+                    parent[i] = parent[parent[i]];
+                    i = parent[i];
+                }
+                return i;
+            }
+            void Join(int a, int b) => parent[Root(a)] = Root(b);
+
+            var byPosition = new Dictionary<Vector3Int, int>();
+            for (var i = 0; i < Positions.Count; i++)
+            {
+                var key = Vector3Int.RoundToInt(Positions[i] * 10000f);
+                if (byPosition.TryGetValue(key, out var other))
+                {
+                    Join(i, other);
+                }
+                else
+                {
+                    byPosition[key] = i;
+                }
+            }
+            for (var t = 0; t < Triangles.Count; t += 3)
+            {
+                Join(Triangles[t], Triangles[t + 1]);
+                Join(Triangles[t], Triangles[t + 2]);
+            }
+
+            return Enumerable.Range(0, Positions.Count).Select(Root).ToArray();
         }
 
         /// <summary>

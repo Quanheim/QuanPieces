@@ -164,3 +164,22 @@ look, the same wear states as they take damage, the same support and snapping, p
   scale as the 2x2 wall's, so a 2x3 next to a 2x2 matches.
 
 </details>
+
+<details>
+<summary><b>Quan's Triangular Wood Floors 1x1</b></summary>
+
+A 1x1 wood floor cut in half corner to corner. Use it to fill small triangular gaps, or to finish the end of a 1x1
+shelf: snap it to the shelf's end and it meets the wall behind at a clean 45°, without the corner poking out
+through the back of a thin wooden wall.
+
+| | Triangular Wood Floor 1x1 (1) | Triangular Wood Floor 1x1 (2) |
+|---|---|---|
+| **Size** | half a 1x1 | half a 1x1 |
+| **Cost** | 1 Wood | 1 Wood |
+| **Crafting station** | Workbench | Workbench |
+
+- (1) and (2) are mirror images: the planks run along one short side or the other, so you can match the floor or
+  shelf beside it.
+- It snaps at its three corners, and needs the same support as any wooden floor.
+
+</details>

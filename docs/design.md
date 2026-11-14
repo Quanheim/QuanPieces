@@ -37,6 +37,11 @@ Built and tested 14 Nov 2026; every test passed or was dropped by Quandru. Ready
 | ✅ | ✅ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall. | **Passed (14 Nov):** covered by 22: both ends bevelled, snapping cleanly, nothing through the wall. |
 | ✅ | ✅ | 24 | Quan's Invisible Item Stand (V) and (H): attach an item, then take it off. | **Passed (14 Nov):** the nub disappears while an item is on and comes back when it's taken off. |
 
+## Credits (decided)
+
+- **Triangular floors and the Bevelled Shelf Edge:** triangular wood floors also exist in BentoG's MissingPieces.
+  Ours are cut from vanilla's 1x1 floor with our own code, nothing of theirs used. No credit (Quandru, 14 Nov 2026).
+
 ## Eating troughs
 
 Status: idea, 2 Nov 2026 (Quandru). Nothing built.

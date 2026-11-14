@@ -150,6 +150,8 @@ gate to match.
 <details>
 <summary><b>Quan's Building Pieces</b></summary>
 
+<p><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/building-pieces-walls.png" alt="A row of beamless plank walls: a 1x3, a 1x1 stacked on a half wall, a 2x2 and a 2x3, all plain vertical planks" width="640"></p>
+
 <table>
 <tr>
 <td><img src="https://raw.githubusercontent.com/Quanheim/QuanPieces/main/docs/images/wood-wall-card.png" alt="Build-menu card: Quan's Wood Wall, 2 Wood at a Workbench" width="240"></td>

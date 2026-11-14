@@ -4,9 +4,9 @@ Pieces planned for QuanPieces that aren't built yet. Built pieces are described 
 the game code each one relies on is in [valheim-dependencies.md](valheim-dependencies.md). When a piece here is
 built, move its description to the README and remove it from this file.
 
-## ▶ Test run: plank walls (1.5.0)
+## Test run: 1.5.0 pieces (complete, 14 Nov 2026)
 
-Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
+Built and tested 14 Nov 2026; every test passed or was dropped by Quandru. Ready to release: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
 1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), Quan's Bevelled Shelf Edge, Quan's Item Stand (V and H) and Quan's Invisible Item Stand (V and H) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
 
 | Test | OK | # | Do | Expect / Result |
@@ -31,13 +31,11 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 17 | Place a Quan's Item Stand on a wall; look from the side. | **Passed (14 Nov):** only the nub shows, flush on the wall; floor stands on a table likewise show only the nub, on the surface. |
 | ✅ | ✅ | 18 | Attach the same item to a vanilla wall stand and a Quan's one; look from the side. | **Passed (14 Nov):** a sword on each: same pose, Quan's nearer the wall on the bare nub, nothing sinking in. Shield and trophy not separately shown (same attach point). |
 | ✅ | ✅ | 19 | Place a Quan's Item Stand (H) on a table; attach an item. | **Passed (14 Nov), fixed build:** the stand sits on the table with no gap, a small nub showing when empty; a tankard sits right on the table surface. **Bug (first build):** wrong "out" axis on the rotated floor stand floated it 2.5 cm, offset the hover box and put the item on top of the nub; fixed. |
+| ✅ | ✅ | 20 | Aim at each bare stand and at one holding an item; take the item off. | **Passed (14 Nov):** hover text appears on target, wall and floor. |
 | ✅ | ✅ | 21 | Damage a stand until it looks worn; remove both. | **Dropped (14 Nov):** not needed (Quandru). Removal already seen to work. |
 | ✅ | ✅ | 22 | Place a Bevelled Shelf Edge at a shelf end; look from above. | **Passed (14 Nov), second build:** planks along the long edge, equal widths, seam meets the shelf's seam. First build had the outer plank full width (seam ~0.69 m out); planks narrowed by 1/√2. |
 | ✅ | ✅ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall. | **Passed (14 Nov):** covered by 22: both ends bevelled, snapping cleanly, nothing through the wall. |
-| | | | &nbsp; | |
-| | | | **Remaining** | |
-| ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
-| ⬜ | ⬜ | 24 | Place a Quan's Invisible Item Stand (V) on a wall and (H) on a table; attach an item to each, then take it off. | Both appear in the hammer as "Quan's Invisible Item Stand (V)" / "(H)". While an item is on, its nub is gone completely; take the item off and the nub comes back. Quan's Item Stand (V)/(H) beside them keep their nub showing either way. |
+| ✅ | ✅ | 24 | Quan's Invisible Item Stand (V) and (H): attach an item, then take it off. | **Passed (14 Nov):** the nub disappears while an item is on and comes back when it's taken off. |
 
 ## Eating troughs
 

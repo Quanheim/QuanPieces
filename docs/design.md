@@ -29,14 +29,14 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ✅ | ✅ | 14 | **Shelf test:** 1x1 floor shelf halfway up a Quan's Wood Wall, triangles snapped to its ends. | **Passed (14 Nov):** they snap to the shelf's corners and stack; the 45° edge meets the wall and nothing pokes out of the wall's back. Led to the Bevelled Shelf Edge (planks along the long edge, like the old rotated-floor look). |
 | ✅ | ✅ | 16 | Damage a triangle to worn and broken; distant look; remove it. | **Dropped (14 Nov):** not needed (Quandru). Removal already seen to work. |
 | ✅ | ✅ | 21 | Damage a stand until it looks worn; remove both. | **Dropped (14 Nov):** not needed (Quandru). Removal already seen to work. |
+| ✅ | ✅ | 22 | Place a Bevelled Shelf Edge at a shelf end; look from above. | **Passed (14 Nov), second build:** planks along the long edge, equal widths, seam meets the shelf's seam. First build had the outer plank full width (seam ~0.69 m out); planks narrowed by 1/√2. |
+| ✅ | ✅ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall. | **Passed (14 Nov):** covered by 22: both ends bevelled, snapping cleanly, nothing through the wall. |
 | | | | &nbsp; | |
 | | | | **Remaining** | |
 | ⬜ | ⬜ | 17 | Place a Quan's Item Stand on a wall beside a vanilla one; look from the side. | Only the nub shows, flush on the wall; no backplate. |
 | ⬜ | ⬜ | 18 | Attach the same items to both: a weapon, a shield and a trophy. Look from the side. | Each item sits in the same pose as on vanilla's, 5 cm nearer the wall, and hides the nub; nothing sinks into the wall. |
 | ⬜ | ⬜ | 19 | Same with the floor stand beside a vanilla floor stand, on a floor and on a 1x1 shelf. | Only the nub shows, on the surface; items sit 2.5 cm lower than on vanilla's, resting on or just above the surface, not sunk into it. |
 | ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
-| ⬜ | ⬜ | 22 | **Re-import the 1.5.0 zip** (new build). Place a Bevelled Shelf Edge at a shelf end; look from above. | Planks run along the long edge, two of equal width; their seam meets the shelf's seam exactly where the pieces join (a mitre); the long edge is a plank's rounded edge; cut sides closed; grain not stretched. **First build (14 Nov):** geometry and snapping right, but the outer plank was full width (0.49 m), so its seam met the shelf edge ~0.69 m out instead of ~0.5 m. Planks narrowed by 1/√2. |
-| ⬜ | ⬜ | 23 | Snap one to each end of a 1x1 shelf on a Quan's Wood Wall, turning it for the second end. | Both ends get the bevelled look (like your old rotated floors, with no corner gap); nothing pokes out of the wall's back. |
 
 ## Eating troughs
 

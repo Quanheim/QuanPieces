@@ -146,3 +146,21 @@ gate to match.
 - They snap like vanilla 2x2 floors and walls, and need the same support as other wooden pieces.
 
 </details>
+
+<details>
+<summary><b>Quan's Plank Walls</b></summary>
+
+The vanilla wood walls with nothing but their vertical planks: no horizontal beams across the back. The same
+look, the same wear states as they take damage, the same support and snapping, plus two taller walls.
+
+| | Wood Wall | Wood Wall Half | Wood Wall 1x1 | Wood Wall 2x3 | Wood Wall 1x3 |
+|---|---|---|---|---|---|
+| **Size** | 2x2 | 2x1 | 1x1 | 2 m wide, 3 m tall | 1 m wide, 3 m tall |
+| **Cost** | 2 Wood | 1 Wood | 1 Wood | 3 Wood | 2 Wood |
+| **Crafting station** | Workbench | Workbench | Workbench | Workbench | Workbench |
+
+- The 2x2, half and 1x1 walls are vanilla's, minus the beams, so they sit happily beside vanilla walls.
+- The 3 m walls' planks are longer, not stretched: the wood grain carries on up the extra height at the same
+  scale as the 2x2 wall's, so a 2x3 next to a 2x2 matches.
+
+</details>

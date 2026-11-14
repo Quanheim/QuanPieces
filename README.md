@@ -147,6 +147,24 @@ gate to match.
 
 </details>
 
+<details>
+<summary><b>Quan's Plank Walls</b></summary>
+
+The vanilla wood walls with nothing but their vertical planks: no horizontal beams across the back. The same
+look, the same wear states as they take damage, the same support and snapping, plus two taller walls.
+
+| | Wood Wall | Wood Wall Half | Wood Wall 1x1 | Wood Wall 2x3 | Wood Wall 1x3 |
+|---|---|---|---|---|---|
+| **Size** | 2x2 | 2x1 | 1x1 | 2 m wide, 3 m tall | 1 m wide, 3 m tall |
+| **Cost** | 2 Wood | 1 Wood | 1 Wood | 3 Wood | 2 Wood |
+| **Crafting station** | Workbench | Workbench | Workbench | Workbench | Workbench |
+
+- The 2x2, half and 1x1 walls are vanilla's, minus the beams, so they sit happily beside vanilla walls.
+- The 3 m walls' planks are longer, not stretched: the wood grain carries on up the extra height at the same
+  scale as the 2x2 wall's, so a 2x3 next to a 2x2 matches.
+
+</details>
+
 ## For developers
 
 A BepInEx/Jotunn mod. Each piece lives in its own class under `Pieces/`, Harmony patches under `Patches/` and shared mesh code under `Meshes/`. The Thunderstore page is
@@ -301,5 +319,26 @@ The door and wall share `Pieces/CoopWood.cs`: 2 Wood at a Workbench (the Cage Wa
 pole's materials without vertex wobble (which visibly bends thin bars), and the wood door's support, sounds and
 effects. `Meshes/WoodGrain.cs` gives the iron meshes new UVs, mapping each face flat from the side it faces with
 the grain along the bar, since their UVs point into a metal texture's layout.
+
+</details>
+
+<details>
+<summary><b>Quan's Plank Walls</b> (<code>Quan_wood_wall</code>, <code>Quan_wood_wall_half</code>, <code>Quan_wood_wall_1x1</code>, <code>Quan_wood_wall_2x3</code>, <code>Quan_wood_wall_1x3</code>)</summary>
+
+`Pieces/PlankWall.cs`. Clones of the vanilla `woodwall` (2x2), `wood_wall_half` and `wood_wall_quarter` (1x1), with
+the beams taken out of their meshes. No patches.
+
+- Each wear state (`New`, `Worn`, `Broken`) is a `LODGroup`. Up close it draws one combined mesh of planks and
+  beams, baked in the editor by SimpleMeshCombine from the boxes under `high` (their renderers are off, and they're
+  in no LOD; the clones delete them). From a distance it draws a plain slab, which has no beams anyway.
+- The combined mesh is split into islands (`MeshData.KeepIslands`), and the islands under 0.5 m tall are dropped:
+  the beams are 0.18-0.33 m, the planks 1-2 m. The mesh is handled in the piece's own space, since the combined
+  meshes sit under offset transforms (some at y = 50 or 51).
+- The 3 m walls are then lengthened with `MeshData.ExtendY`: about the centre for the 2x3 (the 2x2's pivot), and
+  from the foot for the 1x3 (the 1x1's). Every face's UVs grow with it, so the texture carries on instead of
+  stretching. The wood texture (`Planks5c_low`, tiling) shows 0.56 of its width along a plank, so a 3 m plank at
+  the 2x2's grain scale uses 0.84 of it and nothing visibly repeats. Vanilla maps the same texture span onto 1 m
+  and 2 m planks, so the 1x3 takes half the 1x1's grain density to match the 2x2 and 2x3.
+- On the 3 m walls, the snap points, snow, distant slab and box collider move or grow with the extra height.
 
 </details>

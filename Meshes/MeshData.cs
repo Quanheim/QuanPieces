@@ -247,6 +247,60 @@ namespace QuanPieces.Meshes
         }
 
         /// <summary>
+        /// Lengthens the mesh along Y by <paramref name="scale"/>, about the height <paramref name="pivot"/>, without
+        /// stretching its texture: each face's UVs grow with it, so the texture carries on rather than being pulled
+        /// longer. <paramref name="grainScale"/> then sets the texture's scale along Y relative to the original
+        /// (0.5: half as dense, to match a mesh twice the original's length). Works face by face, so any box-like
+        /// mesh works, tilted faces included. The UVs can run past 0..1, so the texture must tile.
+        /// </summary>
+        public MeshData ExtendY(float pivot, float scale, float grainScale = 1f)
+        {
+            // Every triangle gets its own vertices, so each face's UVs can change on their own.
+            var result = Where((positions, normals) => true);
+            for (var t = 0; t < result.Triangles.Count; t += 3)
+            {
+                var i0 = result.Triangles[t];
+                var i1 = result.Triangles[t + 1];
+                var i2 = result.Triangles[t + 2];
+
+                // How the UVs change per metre of height across this face: the UV gradient within the triangle's
+                // plane, G = alpha*e1 + beta*e2, solved from its edges, then read along Y.
+                var e1 = result.Positions[i1] - result.Positions[i0];
+                var e2 = result.Positions[i2] - result.Positions[i0];
+                var d1 = result.Uvs[i1] - result.Uvs[i0];
+                var d2 = result.Uvs[i2] - result.Uvs[i0];
+                var a = Vector3.Dot(e1, e1);
+                var b = Vector3.Dot(e1, e2);
+                var c = Vector3.Dot(e2, e2);
+                var det = a * c - b * b;
+                var perMetreY = Vector2.zero;
+                if (det > 1e-12f)
+                {
+                    var alpha = (c * d1 - b * d2) / det;
+                    var beta = (a * d2 - b * d1) / det;
+                    perMetreY = alpha * e1.y + beta * e2.y;
+                }
+
+                foreach (var i in new[] { i0, i1, i2 })
+                {
+                    var p = result.Positions[i];
+                    var oldY = p.y - pivot;
+                    var newY = oldY * scale;
+                    result.Positions[i] = new Vector3(p.x, pivot + newY, p.z);
+                    result.Uvs[i] += perMetreY * (newY * grainScale - oldY);
+                }
+            }
+
+            // Stretching in Y tilts the normals of sloping faces (the inverse transpose of the scaling).
+            for (var i = 0; i < result.Normals.Count; i++)
+            {
+                var n = result.Normals[i];
+                result.Normals[i] = new Vector3(n.x, n.y / scale, n.z).normalized;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Groups triangles into flat faces: triangles sharing an edge (matched by position) whose normals point the
         /// same way. Returns each triangle's group number, indexed by triangle (index / 3).
         /// </summary>

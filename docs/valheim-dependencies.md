@@ -74,7 +74,8 @@ a change in behaviour isn't, so list the ones whose behaviour the mod depends on
 | `Game.ScaleDrops` | Harvest drop scaling. |
 | `DropTable.GetDropListItems` | Extra harvest drops. |
 | `Piece.DropResources` | Refund of things growing in a removed planter. |
-| `Piece.m_resources` | Seed refund for seedlings. |
+| `Piece.m_resources` | Seed refund for seedlings; the plank walls copy the vanilla walls' cost. |
+| `Piece.m_craftingStation` | The plank walls use the vanilla walls' crafting station. |
 | `Piece.m_placeEffect` | Copied from source pieces. |
 | `Piece.m_groundOnly` | Placement rules copied from source pieces (with the other placement flags beside it). |
 | `Piece.m_clipEverything` | Placement rules copied from source pieces. |
@@ -141,6 +142,10 @@ after each update.
 | `iron_floor_2x2` | Chimney flue base (`New`). | Renamed. |
 | `stone_floor_2x2` | Chimney flue texture and sounds. | Renamed. |
 | `wood_pole` | Coop and planter wood materials (`New`, `WornBroken`). | Renamed. |
+| `woodwall` | Base of Quan's Wood Wall and Wood Wall 2x3. Children `New`, `Worn`, `Broken` (each a `LODGroup`: LOD0 the combined plank-and-beam mesh, LOD1 a slab; `high` holds the unused source boxes), snap points, `beam_2m_snow`; root `BoxCollider`. Beams are the mesh islands under 0.5 m tall. | Renamed, the states or LODs restructured, or the beams no longer separate islands (the piece logs and skips). |
+| `wood_wall_half` | Base of Quan's Wood Wall Half. Same layout as `woodwall`. | As `woodwall`. |
+| `wood_wall_quarter` | Base of Quan's Wood Wall 1x1 and Wood Wall 1x3. Same layout as `woodwall`, pivot at its foot; all three states share one mesh. | As `woodwall`. |
+| `woodwall` material texture | `Planks5c_low` tiles, with the material showing 0.56 of its width along a plank: the 3 m walls' UVs run past 0..1 and rely on it repeating. | The texture stops tiling, or the material's tiling changes (the 3 m walls' grain scale shifts). |
 | `wood_door` | Coop wood support, hit/break/place effects, door sounds. | Renamed. |
 | `wood_floor_1x1` | Planter and floor heater base: piece setup, plank mesh, woodpole material. | Renamed. |
 | `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |

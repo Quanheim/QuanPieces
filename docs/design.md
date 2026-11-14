@@ -4,6 +4,27 @@ Pieces planned for QuanPieces that aren't built yet. Built pieces are described 
 the game code each one relies on is in [valheim-dependencies.md](valheim-dependencies.md). When a piece here is
 built, move its description to the README and remove it from this file.
 
+## ▶ Test run: plank walls (1.5.0)
+
+Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
+1x3 (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
+
+| Test | OK | # | Do | Expect / Result |
+|---|---|---|---|---|
+| | | | **Remaining** | |
+| ⬜ | ⬜ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | Log has no "Couldn't add" or "skipped" lines for any wood wall. |
+| ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. |
+| ⬜ | ⬜ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | Same planks and colour; no beams on Quan's, from either side. |
+| ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |
+| ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
+| ⬜ | ⬜ | 6 | Place a 1x3 beside the 2x3. | Same height and grain scale as the 2x3. |
+| ⬜ | ⬜ | 7 | Snap the 3 m walls: to a floor's edge, side by side, and one wall on top of another. | They snap at floor level and at 3 m; no gaps or overlaps. |
+| ⬜ | ⬜ | 8 | Hit one of each wall until it's worn, then until it's broken (or damage with devcommands). | Worn and broken looks have no beams; on the 3 m walls they're 3 m tall. |
+| ⬜ | ⬜ | 9 | Walk away from a 2x3 and 1x3 until they switch to their distant look. | The distant slab is the full 3 m, not 2 m or 1 m. |
+| ⬜ | ⬜ | 10 | Turn on the hammer's support view on a wall of stacked 3 m walls. | Support colours as for vanilla wood walls; the walls don't fall. |
+| ⬜ | ⬜ | 11 | Walk into the top metre of a 3 m wall; aim the hammer at its top. | You can't walk through it; the hammer targets it all the way up. |
+| ⬜ | ⬜ | 12 | Remove one of each wall with the hammer. | Full cost back: 2, 1, 1, 3, 2 Wood. |
+
 ## Eating troughs
 
 Status: idea, 2 Nov 2026 (Quandru). Nothing built.

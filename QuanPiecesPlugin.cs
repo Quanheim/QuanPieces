@@ -71,6 +71,11 @@ namespace QuanPieces
             Register("floor heater", FloorHeater.Register);
             Register("chicken coop door", ChickenCoopDoor.Register);
             Register("chicken coop wall", ChickenCoopWall.Register);
+            Register("wood wall", PlankWall.RegisterWall);
+            Register("wood wall half", PlankWall.RegisterHalf);
+            Register("wood wall 1x1", PlankWall.Register1x1);
+            Register("wood wall 2x3", PlankWall.Register2x3);
+            Register("wood wall 1x3", PlankWall.Register1x3);
         }
 
         private static void Register(string piece, System.Action register)

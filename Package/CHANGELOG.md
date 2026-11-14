@@ -8,6 +8,8 @@
   grain carried up the planks rather than stretched. Like the walls above, they have no beams.
 - New pieces: Quan's Triangular Wood Floor 1x1 (1) and (2), 1 Wood each. A 1x1 wood floor cut corner to corner,
   for small gaps or a neat 45° end to a 1x1 shelf. Mirror images of each other.
+- New pieces: Quan's Item Stand, for the wall and for the floor. Vanilla's item stands with only the nub, no
+  backplate or underplate, so the item sits right against the wall or on the floor. Same cost as vanilla's.
 
 ## 1.4.0 - 2026-11-07
 

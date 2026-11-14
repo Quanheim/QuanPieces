@@ -7,13 +7,13 @@ built, move its description to the README and remove it from this file.
 ## ▶ Test run: plank walls (1.5.0)
 
 Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1x1, Wood Wall 2x3 and Wood Wall
-1x3, and Quan's Triangular Wood Floor 1x1 (1) and (2) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
+1x3, Quan's Triangular Wood Floor 1x1 (1) and (2), and Quan's Item Stand (wall and floor) (described in the [README](../README.md)). Test build: `dist/Quandru-QuanPieces-1.5.0.zip`.
 
 | Test | OK | # | Do | Expect / Result |
 |---|---|---|---|---|
 | | | | **Remaining** | |
 | ⬜ | ⬜ | 1 | **Prerequisite:** in Gale's QuanPieces profile, remove `Quandru-QuanPieces` if it's there, import the 1.5.0 zip, start the game and load a world. | Log has no "Couldn't add" or "skipped" lines for any wood wall. |
-| ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. Two triangular floors, 1 Wood each. |
+| ⬜ | ⬜ | 2 | Open the hammer's QuanPieces tab. | Five new walls, each with its own icon (planks, no beams); costs 2, 1, 1, 3 and 2 Wood at a Workbench. Two triangular floors, 1 Wood each. Two Quan's Item Stands, at vanilla's cost. |
 | ⬜ | ⬜ | 3 | Place Quan's Wood Wall beside a vanilla wood wall; look at both from front and back. | Same planks and colour; no beams on Quan's, from either side. |
 | ⬜ | ⬜ | 4 | Same for the half and the 1x1, each beside its vanilla twin. | Same as 3. |
 | ⬜ | ⬜ | 5 | Place a 2x3 beside a 2x2 (Quan's or vanilla) on the same floor. | 3 m tall; no beams, front or back; grain runs the full height at the 2x2's scale, not stretched; no seam or visible repeat. |
@@ -28,6 +28,11 @@ Built 14 Nov 2026, not yet tested: Quan's Wood Wall, Wood Wall Half, Wood Wall 1
 | ⬜ | ⬜ | 14 | **Shelf test:** make a 1x1 floor shelf halfway up a Quan's Wood Wall (your usual way), then snap a triangle to the shelf's end with its long edge to the wall. | It snaps at the shelf's corners; the 45° edge meets the wall, and nothing pokes out of the wall's back. |
 | ⬜ | ⬜ | 15 | Walk onto a triangle on the ground, step off its long edge; drop an item on it. | You stand on the triangle but not on the empty half; the item rests on it. |
 | ⬜ | ⬜ | 16 | Damage a triangle to worn and broken; walk away until it switches to its distant look; remove it. | Worn, broken and distant looks are triangles too; 1 Wood back. |
+| ⬜ | ⬜ | 17 | Place a Quan's Item Stand on a wall beside a vanilla one; look from the side. | Only the nub shows, flush on the wall; no backplate. |
+| ⬜ | ⬜ | 18 | Attach the same items to both: a weapon, a shield and a trophy. Look from the side. | Each item sits in the same pose as on vanilla's, 5 cm nearer the wall, and hides the nub; nothing sinks into the wall. |
+| ⬜ | ⬜ | 19 | Same with the floor stand beside a vanilla floor stand, on a floor and on a 1x1 shelf. | Only the nub shows, on the surface; items sit 2.5 cm lower than on vanilla's, resting on or just above the surface, not sunk into it. |
+| ⬜ | ⬜ | 20 | Aim at each bare stand, and at one holding an item; use it to take the item off. | Hover text appears without fiddly aiming; the item comes off and drops in front, as vanilla. |
+| ⬜ | ⬜ | 21 | Damage a stand until it looks worn; remove both with the hammer. | Worn look is a nub alone too; vanilla's cost back. |
 
 ## Eating troughs
 

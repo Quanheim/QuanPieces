@@ -100,6 +100,8 @@ a change in behaviour isn't, so list the ones whose behaviour the mod depends on
 | `ZNetView.ClaimOwnership` | Removing things growing in a destroyed planter. |
 | `ZNetScene.Destroy` | Removing things growing in a destroyed planter. |
 | `ObjectDB.instance` | Seed refund. |
+| `ItemStand.m_attachOther` | Quan's Item Stands move it back with the nub. |
+| `ItemStand.m_dropSpawnPoint` | Moved back with the nub. |
 
 ### Behaviour the mod assumes
 
@@ -115,6 +117,7 @@ Things the game does that the mod counts on without calling them, e.g. "only the
 | `EggGrow.CanGrow` | An egg grows only inside a Heat `EffectArea` (and under a roof), and losing heat resets it; that's what the coop floor's switchable warmth and the floor heater rely on. |
 | `EffectArea.IsPointInsideArea` | Finds areas with a physics overlap, so a deactivated warmth object stops counting at once. |
 | `Bed.CheckFire` | Also accepts a Heat area: a bed on a warm coop floor counts as near a fire. |
+| `ItemStand.SetVisualItem` | Places an attached item at `m_attachOther` plus the item's own `attach` offset, so moving the attach point moves every item with the nub. |
 
 ## Prefabs and assets
 
@@ -146,6 +149,8 @@ after each update.
 | `wood_wall_half` | Base of Quan's Wood Wall Half. Same layout as `woodwall`. | As `woodwall`. |
 | `wood_wall_quarter` | Base of Quan's Wood Wall 1x1 and Wood Wall 1x3. Same layout as `woodwall`, pivot at its foot; all three states share one mesh. | As `woodwall`. |
 | `woodwall` material texture | `Planks5c_low` tiles, with the material showing 0.56 of its width along a plank: the 3 m walls' UVs run past 0..1 and rely on it repeating. | The texture stops tiling, or the material's tiling changes (the 3 m walls' grain scale shifts). |
+| `itemstand` | Base of Quan's Item Stand (wall). Looks `New` and `WornBroken`, each a plate box and a smaller nub box; `collider` box; `attach_other`, `dropspawn`; root `LODGroup`. | Renamed, or the plate and nub stop being two boxes per look (the piece logs and skips). |
+| `itemstandh` | Base of Quan's Item Stand (floor). Same layout. | As `itemstand`. |
 | `wood_door` | Coop wood support, hit/break/place effects, door sounds. | Renamed. |
 | `wood_floor_1x1` | Planter and floor heater base: piece setup, plank mesh, woodpole material. Base of the triangular floors: meshes under `New`, `Worn`, `Broken` (cut), `collider` (its box gives the wedge's thickness), corner snap points, `floor_1x1_snow`; cost and station. | Renamed, or `collider` stops being a box. |
 | `piece_chest_wood` | *Planned* (eating troughs, see [design.md](design.md)): base of the trough; its `Container`, cost and lid (`m_open`/`m_closed`). Name to confirm in game. | Renamed, or the lid objects change. |

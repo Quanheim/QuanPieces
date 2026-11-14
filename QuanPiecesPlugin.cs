@@ -78,6 +78,8 @@ namespace QuanPieces
             Register("wood wall 1x3", PlankWall.Register1x3);
             Register("triangular wood floor 1x1 (1)", TriangleFloor.Register1);
             Register("triangular wood floor 1x1 (2)", TriangleFloor.Register2);
+            Register("wall item stand", NubItemStand.RegisterWall);
+            Register("floor item stand", NubItemStand.RegisterFloor);
         }
 
         private static void Register(string piece, System.Action register)

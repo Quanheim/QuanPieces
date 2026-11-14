@@ -184,6 +184,25 @@ through the back of a thin wooden wall.
 
 </details>
 
+<details>
+<summary><b>Quan's Item Stands</b></summary>
+
+The two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
+underplate. The item hangs right against the wall or sits right on the floor, and hides the nub, so displays can
+be placed precisely without a plate showing.
+
+| | Item Stand (wall) | Item Stand (floor) |
+|---|---|---|
+| **Cost** | as vanilla's | as vanilla's |
+| **Crafting station** | as vanilla's | as vanilla's |
+
+- They work exactly like vanilla's: use one to attach an item or trophy, use it again to take it off, and they
+  accept the same items.
+- Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
+- The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
+
+</details>
+
 ## For developers
 
 A BepInEx/Jotunn mod. Each piece lives in its own class under `Pieces/`, Harmony patches under `Patches/` and shared mesh code under `Meshes/`. The Thunderstore page is
@@ -375,5 +394,21 @@ cut on a diagonal plane through its centre. No patches.
   along z, that makes them mirror images, which no rotation can swap.
 - The square box collider (`collider`) becomes a convex `MeshCollider` wedge of the same thickness. The snap point
   on the cut-off corner and the square snow cover (`floor_1x1_snow`) are removed.
+
+</details>
+
+<details>
+<summary><b>Quan's Item Stands</b> (<code>Quan_itemstand</code>, <code>Quan_itemstandh</code>)</summary>
+
+`Pieces/NubItemStand.cs`. Clones of the vanilla `itemstand` (wall) and `itemstandh` (floor), so the attaching is
+the game's own `ItemStand`. No patches.
+
+- Each look (`New`, `WornBroken`) is two boxes: the plate (the bigger) and the nub. The plates are deleted, and the
+  `LODGroup` drops their empty entries.
+- The piece's origin is the surface it's placed on, and the plate's face stands off it (5 cm on the wall stand,
+  2.5 cm on the floor stand). The nub, `m_attachOther` and `m_dropSpawnPoint` all move back by that much. The game
+  places an attached item relative to `m_attachOther` (plus the item's own `attach` offset), so every item keeps
+  its vanilla position relative to the nub, only closer to the surface.
+- The `collider` box is remade round the nub, from the surface out, at least 10 cm across, so it's easy to aim at.
 
 </details>

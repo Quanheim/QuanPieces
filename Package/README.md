@@ -183,3 +183,22 @@ through the back of a thin wooden wall.
 - It snaps at its three corners, and needs the same support as any wooden floor.
 
 </details>
+
+<details>
+<summary><b>Quan's Item Stands</b></summary>
+
+The two vanilla item stands, on the wall and on the floor, with only their little nub: no backplate or
+underplate. The item hangs right against the wall or sits right on the floor, and hides the nub, so displays can
+be placed precisely without a plate showing.
+
+| | Item Stand (wall) | Item Stand (floor) |
+|---|---|---|
+| **Cost** | as vanilla's | as vanilla's |
+| **Crafting station** | as vanilla's | as vanilla's |
+
+- They work exactly like vanilla's: use one to attach an item or trophy, use it again to take it off, and they
+  accept the same items.
+- Both are called "Quan's Item Stand", as vanilla's two are both "Item stand"; the icons show which is which.
+- The nub is small, so its hover area is a little bigger than the nub to make it easier to aim at.
+
+</details>
